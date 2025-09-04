@@ -30,6 +30,9 @@ func do_freeze():
 		if freezable.has_method("toggle_freeze"):
 			freezable.toggle_freeze()
 
+func do_jump():
+	$StateMachine.transition_to("JumpingState")
+
 #region Animations
 func play_idle_anim():
 	$AnimationPlayer.play("idle")

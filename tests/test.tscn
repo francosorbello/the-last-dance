@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ysd528wfqwyg"]
+[gd_scene load_steps=7 format=3 uid="uid://ysd528wfqwyg"]
 
 [ext_resource type="TileSet" uid="uid://cyke4okorrvbe" path="res://tileset/TileSet_16px.tres" id="1_yggfj"]
 [ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="2_eig8f"]
 [ext_resource type="PackedScene" uid="uid://bpmicnn75rcmd" path="res://freezables/platform/platform.tscn" id="3_7517i"]
+[ext_resource type="PackedScene" uid="uid://bl72hddincbwa" path="res://freezables/jump_pad/jump_pad.tscn" id="4_ry45r"]
 
 [sub_resource type="Curve2D" id="Curve2D_eig8f"]
 _data = {
@@ -30,11 +31,17 @@ debug_jump_enabled = true
 position = Vector2(127, -10)
 zoom = Vector2(1.3, 1.3)
 
+[node name="JumpPad2" parent="." instance=ExtResource("4_ry45r")]
+position = Vector2(405, 83)
+
 [node name="LinearPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_eig8f")
 
 [node name="Platform" parent="LinearPath" instance=ExtResource("3_7517i")]
 position = Vector2(4, 3)
+
+[node name="JumpPad" parent="LinearPath/Platform" instance=ExtResource("4_ry45r")]
+position = Vector2(0, -25)
 
 [node name="CircularPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_7517i")

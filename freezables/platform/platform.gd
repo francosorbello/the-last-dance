@@ -5,7 +5,7 @@ extends PathFollow2D
 @export var initial_progress_ratio : float = 0:
     set(value):
         initial_progress_ratio = value
-        if Engine.is_editor_hint():
+        if Engine.is_editor_hint() and get_parent() and get_parent() is Path2D:
             progress_ratio = initial_progress_ratio
 
 var has_path : bool
