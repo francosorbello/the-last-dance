@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwhodtrhy5nid"]
+
+[ext_resource type="Script" uid="uid://c5oytandxvq6m" path="res://freezables/moving_belt/moving_belt.gd" id="1_yw4hm"]
+[ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="2_jmptf"]
+
+[sub_resource type="Curve2D" id="Curve2D_yjxk2"]
+bake_interval = 50.0
+
+[node name="MovingBelt" type="Path2D"]
+curve = SubResource("Curve2D_yjxk2")
+script = ExtResource("1_yw4hm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+texture = ExtResource("2_jmptf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
