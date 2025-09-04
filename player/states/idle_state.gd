@@ -10,8 +10,8 @@ func physics_update(delta: float):
     
     if not player.is_on_floor():
         state_machine.transition_to("FallingState")
-    elif Input.is_action_just_pressed("jump"):
-        state_machine.transition_to("JumpingState")
+    # elif Input.is_action_just_pressed("jump"):
+    #     state_machine.transition_to("JumpingState")
     elif Input.get_axis("move_left","move_right") != 0:
         state_machine.transition_to("MovingState")
 

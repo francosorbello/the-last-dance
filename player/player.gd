@@ -4,12 +4,16 @@ class_name APlayer
 @export var jump_data : JumpData
 @export var player_data : PlayerData
 
+@export var debug_jump_enabled : bool = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _unhandled_input(event):
-	if event.is_pressed() and not event is InputEventMouse and event.keycode == KEY_J:
-		$StateMachine.disabled = !$StateMachine.disabled
+	if event.is_action_pressed("jump") and debug_jump_enabled:
+		$StateMachine.transition_to("JumpingState")
+	if event.is_action_pressed("freeze"):
+		do_freeze()
 
 func _physics_process(_delta: float) -> void:
 	if velocity.x != 0:
@@ -20,6 +24,11 @@ func get_gravity_data():
 		return jump_data.get_jump_gravity()
 	
 	return jump_data.get_fall_gravity()
+
+func do_freeze():
+	for freezable in get_tree().get_nodes_in_group("freezable"):
+		if freezable.has_method("toggle_freeze"):
+			freezable.toggle_freeze()
 
 #region Animations
 func play_idle_anim():
@@ -33,3 +42,4 @@ func play_fall_anim():
 
 func play_run_anim():
 	$AnimationPlayer.play("run")
+#endregion

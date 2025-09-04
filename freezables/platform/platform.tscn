@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpmicnn75rcmd"]
+
+[ext_resource type="Script" uid="uid://cn0p8bxdwqe38" path="res://freezables/platform/platform.gd" id="1_4ojcy"]
+[ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="1_7p4g5"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_0v5mn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p4g5"]
+size = Vector2(64, 16)
+
+[node name="Platform" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_4ojcy")
+
+[node name="StaticBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 3
+sync_to_physics = false
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_7p4g5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_7p4g5")
+one_way_collision = true
+
+[node name="FreezableComponent" parent="." instance=ExtResource("3_0v5mn")]
+
+[connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]

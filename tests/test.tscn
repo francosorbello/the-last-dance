@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ysd528wfqwyg"]
+[gd_scene load_steps=6 format=3 uid="uid://ysd528wfqwyg"]
 
 [ext_resource type="TileSet" uid="uid://cyke4okorrvbe" path="res://tileset/TileSet_16px.tres" id="1_yggfj"]
 [ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="2_eig8f"]
+[ext_resource type="PackedScene" uid="uid://bpmicnn75rcmd" path="res://freezables/platform/platform.tscn" id="3_7517i"]
+
+[sub_resource type="Curve2D" id="Curve2D_eig8f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4, 3, 0, 0, 0, 0, 126, 3)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7517i"]
+_data = {
+"points": PackedVector2Array(-23.3254, 39.6531, 23.3254, -39.6531, 257, -21, -41.0526, 3.73206, 41.0526, -3.73206, 326, -63, -1.39952, -20.5263, 1.39952, 20.5263, 384, -16, 39.1866, -10.7297, -39.1866, 10.7297, 333, 30, 11.6627, 57.3804, -11.6627, -57.3804, 257, -21)
+}
+point_count = 5
 
 [node name="test" type="Node2D"]
 
@@ -11,7 +24,39 @@ tile_set = ExtResource("1_yggfj")
 
 [node name="Player" parent="." instance=ExtResource("2_eig8f")]
 position = Vector2(179, 26)
+debug_jump_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(127, -10)
 zoom = Vector2(1.3, 1.3)
+
+[node name="LinearPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_eig8f")
+
+[node name="Platform" parent="LinearPath" instance=ExtResource("3_7517i")]
+position = Vector2(4, 3)
+
+[node name="CircularPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_7517i")
+
+[node name="Platform" parent="CircularPath" instance=ExtResource("3_7517i")]
+position = Vector2(257, -21)
+loop = true
+
+[node name="Platform2" parent="CircularPath" instance=ExtResource("3_7517i")]
+position = Vector2(327.952, -63.1471)
+progress = 88.8643
+loop = true
+initial_progress_ratio = 0.25
+
+[node name="Platform3" parent="CircularPath" instance=ExtResource("3_7517i")]
+position = Vector2(383.897, -9.24216)
+progress = 177.729
+loop = true
+initial_progress_ratio = 0.5
+
+[node name="Platform4" parent="CircularPath" instance=ExtResource("3_7517i")]
+position = Vector2(326.894, 31.5718)
+progress = 252.375
+loop = true
+initial_progress_ratio = 0.71

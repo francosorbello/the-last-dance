@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://du2n7hnfpoyuw"]
+
+[ext_resource type="Script" uid="uid://s4hyw7g840mh" path="res://freezables/freezable_component.gd" id="1_51r4k"]
+
+[node name="FreezableComponent" type="Node" groups=["freezable"]]
+script = ExtResource("1_51r4k")
