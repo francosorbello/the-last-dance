@@ -1,5 +1,8 @@
 extends PlayerState
 
+func enter():
+    player.play_run_anim()
+
 func physics_update(delta : float):
     if Input.is_action_just_pressed("jump"):
         state_machine.transition_to("JumpingState")

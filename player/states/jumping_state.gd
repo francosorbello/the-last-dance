@@ -3,6 +3,7 @@ extends PlayerState
 
 func enter():
     player.velocity.y = player.jump_data.get_jump_velocity()
+    player.play_jump_anim()
 
 func physics_update(delta : float):
     # print(player.velocity.y)

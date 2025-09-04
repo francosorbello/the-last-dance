@@ -1,5 +1,8 @@
 extends PlayerState
 
+func enter():
+    player.play_idle_anim()
+
 ## Update the state on the physics stage.
 func physics_update(delta: float):
     player.velocity.y += player.jump_data.get_fall_gravity() * delta
