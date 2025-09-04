@@ -1,18 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwhodtrhy5nid"]
+[gd_scene load_steps=5 format=3 uid="uid://dwhodtrhy5nid"]
 
 [ext_resource type="Script" uid="uid://c5oytandxvq6m" path="res://freezables/moving_belt/moving_belt.gd" id="1_yw4hm"]
 [ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="2_jmptf"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_q3xvv"]
 
-[sub_resource type="Curve2D" id="Curve2D_yjxk2"]
+[sub_resource type="Curve2D" id="Curve2D_jmptf"]
 bake_interval = 50.0
 
 [node name="MovingBelt" type="Path2D"]
-curve = SubResource("Curve2D_yjxk2")
+curve = SubResource("Curve2D_jmptf")
 script = ExtResource("1_yw4hm")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 texture = ExtResource("2_jmptf")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+
+[node name="AnchorPoint" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="DisabledTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FreezableComponent" parent="." instance=ExtResource("3_q3xvv")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]

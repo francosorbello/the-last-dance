@@ -33,6 +33,15 @@ func do_freeze():
 func do_jump():
 	$StateMachine.transition_to("JumpingState")
 
+func can_be_attached() -> bool:
+	return true
+
+func attach_to_belt():
+	$StateMachine.transition_to("BeltingState")
+
+func detach_from_belt():
+	$StateMachine.transition_to("FallingState")
+
 #region Animations
 func play_idle_anim():
 	$AnimationPlayer.play("idle")

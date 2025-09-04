@@ -3,32 +3,102 @@ extends Path2D
 
 @export_tool_button("Create", "Callable") var create_belt_action = create_belt
 @export var width : float = 30
+@export var move_speed : float = 30
+
+var attached_entity : Node2D
+var prev_attached_entity : Node2D
+var prev_attached_parent : Node
+
+var moving_entity : bool = false
+
+
+func _ready():
+	create_belt()
 
 func create_belt():
+	if curve.get_baked_points().is_empty():
+		clear_belt()
+		return
 
-    if curve.get_baked_points().is_empty():
-        clear_belt()
-        return
+	var start_point = curve.get_baked_points()[0]
+	var end_point = curve.get_baked_points()[curve.get_baked_points().size()-1]
 
-    var start_point = curve.get_baked_points()[0]
-    var end_point = curve.get_baked_points()[curve.get_baked_points().size()-1]
-    print(curve.get_baked_points())
+	var p1 = Vector2(start_point.x,start_point.y + width/2)
+	var p2 = Vector2(end_point.x  , start_point.y + width/2)
+	var p3 = Vector2(end_point.x  , end_point.y - width/2)
+	var p4 = Vector2(start_point.x, start_point.y - width/2)
+	
+	var polygon : PackedVector2Array = []
+	
+	polygon.append(p1)
+	polygon.append(p2)
+	polygon.append(p3)
+	polygon.append(p4)
+	
+	$Area2D/Polygon2D.polygon = polygon
+	$Area2D/CollisionPolygon2D.polygon = polygon
 
-    var p1 = Vector2(start_point.x,start_point.y + width/2)
-    var p2 = Vector2(end_point.x  , start_point.y + width/2)
-    var p3 = Vector2(end_point.x  , end_point.y - width/2)
-    var p4 = Vector2(start_point.x, start_point.y - width/2)
-    
-    var polygon : PackedVector2Array = []
-    
-    polygon.append(p1)
-    polygon.append(p2)
-    polygon.append(p3)
-    polygon.append(p4)
-    
-    $StaticBody2D/Polygon2D.polygon = polygon
-    $StaticBody2D/CollisionPolygon2D.polygon = polygon
+func _physics_process(delta):
+	if moving_entity:
+		$AnchorPoint.progress += move_speed * delta
+		if is_equal_approx($AnchorPoint.progress_ratio,1.0):
+			$DisabledTimer.start()
+			detach()
+
 
 func clear_belt():
-    $StaticBody2D/Polygon2D.polygon = []
-    $StaticBody2D/CollisionPolygon2D.polygon = []
+	$Area2D/Polygon2D.polygon = []
+	$Area2D/CollisionPolygon2D.polygon = []
+
+func attach(entity : Node2D):
+	if moving_entity or entity.get_parent() == $AnchorPoint: 
+		return
+	
+	attached_entity = entity
+	prev_attached_parent = entity.get_parent()
+	
+	entity.get_parent().remove_child(entity)
+	
+	var distance = abs(entity.global_position.x - $AnchorPoint.global_position.x)
+	$AnchorPoint.progress += distance 
+
+	$AnchorPoint.add_child(entity)
+	entity.position = Vector2.ZERO
+	
+	moving_entity = true
+	
+func detach():
+	$DisabledTimer.start()
+	if attached_entity:
+		$AnchorPoint.remove_child(attached_entity)
+
+		prev_attached_parent.add_child(attached_entity)
+		attached_entity.global_position = $AnchorPoint.global_position
+		attached_entity.detach_from_belt()
+
+		moving_entity = false
+
+	$AnchorPoint.progress_ratio = 0
+
+	prev_attached_entity = attached_entity
+	attached_entity = null
+	prev_attached_parent = null
+
+func _on_area_2d_body_entered(body:Node2D) -> void:
+	if $DisabledTimer.time_left > 0:
+		return
+
+	if $FreezableComponent.frozen:
+		return
+	# if prev_attached_entity and body == prev_attached_entity:
+	#     return
+
+	if body.has_method("can_be_attached") and body.can_be_attached():
+		body.attach_to_belt()
+		attach.call_deferred(body)
+	# 	attach(body)
+
+
+func _on_freezable_component_on_freeze_toggle(is_frozen: bool) -> void:
+	if is_frozen and attached_entity != null:
+		detach()
