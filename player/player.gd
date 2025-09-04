@@ -55,3 +55,7 @@ func play_fall_anim():
 func play_run_anim():
 	$AnimationPlayer.play("run")
 #endregion
+
+func _on_hurt_area_damage_taken() -> void:
+	print("die")
+	pass # Replace with function body.

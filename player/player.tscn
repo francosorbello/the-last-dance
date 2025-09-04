@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://buc2hq5m81801"]
+[gd_scene load_steps=23 format=3 uid="uid://buc2hq5m81801"]
 
 [ext_resource type="Script" uid="uid://jslqxen8eknj" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_oul6g"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://bvwt4t55rvrwk" path="res://player/states/jumping_state.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://dd87ct57h2bn0" path="res://player/states/moving_state.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://bnq0hnhjidrxa" path="res://player/states/belting_state.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://d38vhllxhfv3n" path="res://player/hurt_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://c6vb0djjxxyvr" path="res://player/interactable_detector.gd" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://cmo4wqq4g7htn" path="res://player/interactable_manager.gd" id="13_yllr7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 
@@ -109,6 +112,11 @@ _data = {
 &"run": SubResource("Animation_2ieo8")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8t03j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ieo8"]
+radius = 18.9737
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_g1dw6")
@@ -117,6 +125,7 @@ player_data = ExtResource("3_yw30f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_oul6g")
+flip_h = true
 hframes = 14
 vframes = 8
 frame = 1
@@ -149,3 +158,28 @@ script = ExtResource("10_8t03j")
 libraries = {
 &"": SubResource("AnimationLibrary_yllr7")
 }
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("11_2ieo8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("CapsuleShape2D_8t03j")
+debug_color = Color(0.98384, 0, 0.349269, 0.42)
+
+[node name="InteractableDetector" type="Area2D" parent="."]
+script = ExtResource("12_ebec5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
+shape = SubResource("CircleShape2D_2ieo8")
+
+[node name="InteractableManager" type="Node" parent="."]
+script = ExtResource("13_yllr7")
+
+[connection signal="body_entered" from="HurtArea" to="HurtArea" method="_on_body_entered"]
+[connection signal="damage_taken" from="HurtArea" to="." method="_on_hurt_area_damage_taken"]
+[connection signal="area_entered" from="InteractableDetector" to="InteractableDetector" method="_on_area_entered"]
+[connection signal="area_exited" from="InteractableDetector" to="InteractableDetector" method="_on_area_exited"]
+[connection signal="interactable_found" from="InteractableDetector" to="InteractableManager" method="_on_interactable_detector_interactable_found"]
+[connection signal="interactable_lost" from="InteractableDetector" to="InteractableManager" method="_on_interactable_detector_interactable_lost"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4cadj243vatq"]
+
+[ext_resource type="Texture2D" uid="uid://csajnrjp1uheh" path="res://assets/gray_samurai/GraySamuraiGun.png" id="1_37cpl"]
+[ext_resource type="PackedScene" uid="uid://bldjy0jf7o4h2" path="res://interactables/interactable_component/interactable_component.tscn" id="2_vtrfx"]
+[ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="3_t7jv8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtrfx"]
+
+[node name="GunInteractable" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_37cpl")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_vtrfx")]
+
+[node name="OutlineComponent" parent="InteractableComponent" node_paths=PackedStringArray("sprite") instance=ExtResource("3_t7jv8")]
+sprite = NodePath("../../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(13, -1)
+shape = SubResource("CircleShape2D_vtrfx")
