@@ -1,4 +1,5 @@
 extends Node
+class_name OutlineComponent
 
 @export var outline_shader : Shader
 @export var sprite : Sprite2D
