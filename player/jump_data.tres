@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="JumpData" load_steps=2 format=3 uid="uid://burmekvucgnek"]
+
+[ext_resource type="Script" uid="uid://bctl1kfdyadpt" path="res://player/jump_data.gd" id="1_3oado"]
+
+[resource]
+script = ExtResource("1_3oado")
+jump_height = 100.0
+jump_time_to_peak = 0.5
+jump_time_to_descent = 0.4
+metadata/_custom_type_script = "uid://bctl1kfdyadpt"

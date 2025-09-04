@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://db1bp13h8byw1"]
+
+[ext_resource type="Script" uid="uid://d3gxhaueoypmc" path="res://player/player_data.gd" id="1_cmdx7"]
+
+[resource]
+script = ExtResource("1_cmdx7")
+move_speed = 200.0
+metadata/_custom_type_script = "uid://d3gxhaueoypmc"
