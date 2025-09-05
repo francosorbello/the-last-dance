@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfv1ubpvrcene"]
+
+[ext_resource type="Script" uid="uid://en1q2snogygk" path="res://maps/switch_room_area.gd" id="1_ssenp"]
+
+[node name="SwitchRoomArea" type="Area2D"]
+script = ExtResource("1_ssenp")
+switch_to = "test_map_room_1"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

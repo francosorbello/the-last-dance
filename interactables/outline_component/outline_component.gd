@@ -5,6 +5,7 @@ class_name OutlineComponent
 @export var sprite : Sprite2D
 
 var material : ShaderMaterial
+
 func _ready() -> void:
     material = ShaderMaterial.new()
     material.shader = outline_shader

@@ -113,7 +113,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8t03j"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_g1dw6")
 jump_data = ExtResource("2_g1dw6")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=4 uid="uid://b7nx3xrg14ica"]
+
+[ext_resource type="TileSet" uid="uid://cyke4okorrvbe" path="res://tileset/TileSet_16px.tres" id="1_mwa8g"]
+[ext_resource type="PackedScene" uid="uid://b8jo7kie0b88m" path="res://maps/spawn_position.tscn" id="2_7a3nn"]
+[ext_resource type="PackedScene" uid="uid://dfv1ubpvrcene" path="res://maps/switch_room_area.tscn" id="3_17agw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8bsj"]
+size = Vector2(57, 20)
+
+[node name="TestMapRoom3" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAJAAcABQALAAYAAAARAAcABQALAAYAAAD9/wcABQALAAYAAAD1/wcABQALAAYAAAARAAMABQALAAYAAAAJAP//BQALAAYAAAABAP//BQALAAYAAAD5////BQALAAYAAAD1/wMABQALAAYAAAARAP//BQALAAYAAAA=")
+tile_set = ExtResource("1_mwa8g")
+
+[node name="SpawnPosition" parent="." instance=ExtResource("2_7a3nn")]
+position = Vector2(-3, 73)
+use_jump = true
+
+[node name="SwitchRoomArea" parent="." instance=ExtResource("3_17agw")]
+position = Vector2(-2, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchRoomArea"]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_w8bsj")

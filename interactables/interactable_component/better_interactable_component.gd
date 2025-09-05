@@ -23,7 +23,6 @@ func hover_interactable():
     on_hover.emit()
     if outline_component:
         var color = Color.WHITE if is_interactable else Color.RED
-        print(color)
         outline_component.enable_outline(color)
 
 func leave_interactable():

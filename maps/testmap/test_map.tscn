@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://uwcrxdwfs2qc"]
+
+[ext_resource type="Script" uid="uid://c3dcpu2fqgiui" path="res://maps/game_map.gd" id="1_6slyc"]
+[ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="2_u72re"]
+[ext_resource type="PackedScene" uid="uid://coicmp31h6wfq" path="res://maps/testmap/test_map_room_1.tscn" id="3_1k381"]
+[ext_resource type="PackedScene" uid="uid://dma5vro1uxa5" path="res://maps/testmap/test_map_room_2.tscn" id="3_8pt4q"]
+[ext_resource type="PackedScene" uid="uid://b7nx3xrg14ica" path="res://maps/testmap/test_map_room_3.tscn" id="4_qu2x5"]
+
+[node name="GameMap" type="Node"]
+script = ExtResource("1_6slyc")
+first_room = "test_map_room_1"
+room_list = Array[PackedScene]([ExtResource("3_1k381"), ExtResource("3_8pt4q"), ExtResource("4_qu2x5")])
+
+[node name="Player" parent="." instance=ExtResource("2_u72re")]
+position = Vector2(0, 27)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)

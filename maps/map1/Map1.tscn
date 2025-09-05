@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://huafwka8mic0"]
+
+[ext_resource type="Script" uid="uid://c3dcpu2fqgiui" path="res://maps/game_map.gd" id="1_n2l0y"]
+[ext_resource type="Resource" uid="uid://ct657acf3r11" path="res://maps/map1/map1_list.tres" id="2_wol6x"]
+
+[node name="Map1" type="Node"]
+script = ExtResource("1_n2l0y")
+room_list = ExtResource("2_wol6x")
