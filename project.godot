@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalEventSystem="*res://addons/ftr_tools/global_event_system/global_event_system.gd"
+SfxSoundManager="*res://sounds/sound_manager/sfx_sound_manager.gd"
 
 [display]
 

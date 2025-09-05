@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://buc2hq5m81801"]
+[gd_scene load_steps=22 format=3 uid="uid://buc2hq5m81801"]
 
 [ext_resource type="Script" uid="uid://jslqxen8eknj" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_oul6g"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bvwt4t55rvrwk" path="res://player/states/jumping_state.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://dd87ct57h2bn0" path="res://player/states/moving_state.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://bnq0hnhjidrxa" path="res://player/states/belting_state.gd" id="10_8t03j"]
+[ext_resource type="AudioStream" uid="uid://ddxawqbf260x0" path="res://sounds/footstep2.wav" id="10_yllr7"]
 [ext_resource type="Script" uid="uid://d38vhllxhfv3n" path="res://player/hurt_area.gd" id="11_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://nk1aatfajmy" path="res://player/better_interactable_manager.tscn" id="14_kb6p2"]
 
@@ -147,6 +148,13 @@ script = ExtResource("8_rgyib")
 [node name="MovingState" type="Node" parent="StateMachine"]
 script = ExtResource("9_hg6s5")
 
+[node name="StepSound" type="AudioStreamPlayer" parent="StateMachine/MovingState"]
+stream = ExtResource("10_yllr7")
+volume_db = -10.0
+
+[node name="StepTimer" type="Timer" parent="StateMachine/MovingState"]
+wait_time = 0.2
+
 [node name="BeltingState" type="Node" parent="StateMachine"]
 script = ExtResource("10_8t03j")
 
@@ -166,5 +174,8 @@ debug_color = Color(0.98384, 0, 0.349269, 0.42)
 
 [node name="BetterInteractableManager" parent="." instance=ExtResource("14_kb6p2")]
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[connection signal="timeout" from="StateMachine/MovingState/StepTimer" to="StateMachine/MovingState" method="_on_step_timer_timeout"]
 [connection signal="body_entered" from="HurtArea" to="HurtArea" method="_on_body_entered"]
 [connection signal="damage_taken" from="HurtArea" to="." method="_on_hurt_area_damage_taken"]

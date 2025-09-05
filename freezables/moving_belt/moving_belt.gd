@@ -11,6 +11,7 @@ var prev_attached_parent : Node
 
 var moving_entity : bool = false
 
+var direction : Vector2
 
 func _ready():
 	create_belt()
@@ -22,6 +23,8 @@ func create_belt():
 
 	var start_point = curve.get_baked_points()[0]
 	var end_point = curve.get_baked_points()[curve.get_baked_points().size()-1]
+
+	direction = (end_point - start_point).normalized()
 
 	var p1 = Vector2(start_point.x,start_point.y + width/2)
 	var p2 = Vector2(end_point.x  , start_point.y + width/2)
@@ -38,6 +41,21 @@ func create_belt():
 	$Area2D/Polygon2D.polygon = polygon
 	$Area2D/CollisionPolygon2D.polygon = polygon
 	$Line2D.points = polygon
+	if Engine.is_editor_hint():
+		return
+	_setup_shader_direction()
+
+func _setup_shader_direction():
+	# wait for visual component to be ready (ie: duplicate the material if needed)
+	await get_tree().process_frame
+	await get_tree().create_timer(0.2).timeout
+	
+	var mat : ShaderMaterial = $FreezableComponent/FrozenVisualComponent._material_instance
+	
+	var dir = sign(direction.x) * 1
+	
+	mat.set_shader_parameter("speedx",dir)
+	mat.set_shader_parameter("fbm_speed",-dir*2)
 
 func _physics_process(delta):
 	if moving_entity:

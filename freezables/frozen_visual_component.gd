@@ -5,6 +5,8 @@ extends Node
 
 var _material_instance : ShaderMaterial
 
+signal setup_finished
+
 func _ready() -> void:
     await get_tree().process_frame
     if visual.material == null:
@@ -12,7 +14,7 @@ func _ready() -> void:
         visual.material = _material_instance
     else:
         _material_instance = visual.material
-    
+    setup_finished.emit()
     disable_visual()
 
 func enable_visual():

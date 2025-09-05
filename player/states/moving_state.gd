@@ -2,6 +2,11 @@ extends PlayerState
 
 func enter():
     player.play_run_anim()
+    $StepTimer.start()
+    # _on_step_timer_timeout()
+
+func exit():
+    $StepTimer.stop()
 
 func physics_update(delta : float):
     # if Input.is_action_just_pressed("jump"):
@@ -24,3 +29,8 @@ func physics_update(delta : float):
     if is_equal_approx(player.velocity.x,0.0):
         state_machine.transition_to("IdleState") 
         return
+
+
+func _on_step_timer_timeout() -> void:
+    $StepSound.pitch_scale = randf_range(0.7,1.3)
+    $StepSound.play()

@@ -12,7 +12,6 @@ func _ready():
     if target_to_follow:
         current_room = get_room_from_position(target_to_follow.global_position)
         _target_pos = calculate_room_center(current_room)
-        print(_target_pos)
         position = _target_pos
 
 func calculate_room_center(room : Vector2) -> Vector2:

@@ -93,7 +93,7 @@ vec2 clouduv(vec2 uv, float time, vec2 centers[6]){
     const int count = 3;
     const vec2 flowDir = vec2(0.20, -0.07);
 
-    vec2 cloud_shiftspeed = time * vec2(speedx, speedy * (1.0-float(enabled))) * fbm_speed;
+    vec2 cloud_shiftspeed = time * vec2(speedx * (1.0-float(enabled)), speedy * (1.0-float(enabled))) * fbm_speed * (1.0-float(enabled));
     vec2 p = uv * warp_scale - cloud_shiftspeed;
     vec2 warp = vec2(
         fbm(p + vec2(5.2, 1.3) + time*flowDir*1.2),
@@ -132,7 +132,7 @@ void fragment() {
     vec3 color = background_color * (1.0-float(enabled)) + enabled_bg_color * float(enabled);
 
     vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
-    vec2 st = SCREEN_UV;
+    vec2 st = UV;
     st.x = st.x / screen_size.y * screen_size.x;
 
     vec2 cuv = (st - 0.5) * 2.0;
@@ -141,7 +141,7 @@ void fragment() {
     for(int layer = 0; layer < 4; layer++) {
 
         float layerScale = exp(float(layer*layer_parascale + 1) * density * 0.002);
-        vec2 layerSpeed = vec2(speedx, speedy * (1.0-float(enabled))) * vec2(1.0 + float(layer) * 0.3);
+        vec2 layerSpeed = vec2(speedx * (1.0-float(enabled)), speedy * (1.0-float(enabled))) * vec2(1.0 + float(layer) * 0.3);
         float layerSize = star_size * (1.0 - float(layer) * 0.2);
 
         // Calculate coordinates for each layer

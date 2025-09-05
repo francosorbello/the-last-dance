@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl72hddincbwa"]
+[gd_scene load_steps=6 format=3 uid="uid://bl72hddincbwa"]
 
 [ext_resource type="Script" uid="uid://6xfrcmgv0khc" path="res://freezables/jump_pad/jump_pad.gd" id="1_pt4uv"]
 [ext_resource type="Texture2D" uid="uid://bin2owvmssq6m" path="res://assets/jump_pad2.png" id="1_pwbfw"]
+[ext_resource type="AudioStream" uid="uid://c7kjumynsgsc" path="res://sounds/Retro Jump Simple A 01.mp3" id="3_4x6iy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pt4uv"]
 size = Vector2(32, 16)
@@ -27,5 +28,8 @@ texture = ExtResource("1_pwbfw")
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_pwbfw")
 debug_color = Color(0.490227, 0.58439, 5.77569e-07, 0.42)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4x6iy")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
