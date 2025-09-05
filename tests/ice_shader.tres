@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://df2reb210eo23"]
+
+[ext_resource type="Shader" uid="uid://c3evw2i5tnk6a" path="res://ice2.gdshader" id="1_ejkox"]
+
+[sub_resource type="Gradient" id="Gradient_nvdos"]
+colors = PackedColorArray(0.364706, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nvdos"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nvdos"]
+seamless = true
+normalize = false
+color_ramp = SubResource("Gradient_nvdos")
+noise = SubResource("FastNoiseLite_nvdos")
+
+[resource]
+shader = ExtResource("1_ejkox")
+shader_parameter/darken_intensity = 1.635
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_nvdos")
+shader_parameter/moveDir = Vector2(1, 0)
+shader_parameter/speed = 0.05
+shader_parameter/effect_intensity = 1.0
+shader_parameter/enabled = true

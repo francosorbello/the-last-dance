@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0t0qds41kbg6"]
+
+[ext_resource type="Script" uid="uid://c78b6rakrmni4" path="res://freezables/frozen_visual_component.gd" id="1_shegj"]
+[ext_resource type="Material" uid="uid://df2reb210eo23" path="res://tests/ice_shader.tres" id="2_1dfhb"]
+
+[node name="FrozenVisualComponent" type="Node"]
+script = ExtResource("1_shegj")
+material = ExtResource("2_1dfhb")

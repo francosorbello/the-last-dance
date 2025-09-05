@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://btucnij1novdj"]
+
+[ext_resource type="Material" uid="uid://df2reb210eo23" path="res://tests/ice_shader.tres" id="1_nvdos"]
+[ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="2_6twss"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_nvdos")
+texture = ExtResource("2_6twss")
