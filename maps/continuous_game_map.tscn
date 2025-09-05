@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=4 uid="uid://d07ydcgd7xotw"]
+
+[ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="1_whv3i"]
+[ext_resource type="TileSet" uid="uid://cyke4okorrvbe" path="res://tileset/TileSet_16px.tres" id="2_ixwes"]
+[ext_resource type="Script" uid="uid://tm06w6rk3m3g" path="res://maps/room_camera.gd" id="2_ulupt"]
+[ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="3_br62v"]
+[ext_resource type="PackedScene" uid="uid://bl72hddincbwa" path="res://freezables/jump_pad/jump_pad.tscn" id="3_xg0fc"]
+
+[node name="ContinuousGameMap" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Node2D"]
+tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAA=")
+tile_set = ExtResource("3_br62v")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Node2D"]
+tile_map_data = PackedByteArray("AAADAAsABQAGAAYAAAAHAAsABQAGAAYAAAALAAsABQAGAAYAAAAPAAsABQAGAAYAAAATAAsABQAGAAYAAAABAAcABQAGAAYAAAABAAYABQAGAAYAAAABAAUABQAGAAYAAAABAAQABQAGAAYAAAABAAMABQAGAAYAAAABAAIABQAGAAYAAAABAAEABQAGAAYAAAABAAAABQAGAAYAAAATAAEABQADAAMAAAATAAMABQADAAMAAAADAP//BQADAAMAAAAEAP//BQADAAMAAAAFAP//BQADAAMAAAAGAP//BQADAAMAAAAHAP//BQADAAMAAAAIAP//BQADAAMAAAAJAP//BQADAAMAAAAKAP//BQADAAMAAAALAP//BQADAAMAAAAMAP//BQADAAMAAAANAP//BQADAAMAAAAOAP//BQADAAMAAAAPAP//BQADAAMAAAAQAP//BQADAAMAAAARAP//BQADAAMAAAASAP//BQADAAMAAAATAP//BQADAAMAAAAVAAkABQADAAMAAAAXAAkABQADAAMAAAAZAAkABQADAAMAAAAbAAkABQADAAMAAAAdAAkABQADAAMAAAAfAAkABQADAAMAAAAhAAkABQADAAMAAAAbABYABQALAAsAAAAjABYABQALAAsAAAArABYABQALAAsAAAA=")
+tile_set = ExtResource("2_ixwes")
+
+[node name="JumpPad" parent="Node2D" instance=ExtResource("3_xg0fc")]
+position = Vector2(618, 248)
+
+[node name="Player" parent="." instance=ExtResource("1_whv3i")]
+position = Vector2(170, 102)
+
+[node name="RoomCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target_to_follow")]
+position = Vector2(160, 90)
+position_smoothing_speed = 10.0
+script = ExtResource("2_ulupt")
+target_to_follow = NodePath("../Player")
+follow_smoothing = 0.3
