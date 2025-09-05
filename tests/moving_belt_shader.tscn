@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsmx8wlff6fmt"]
+
+[ext_resource type="PackedScene" uid="uid://dwhodtrhy5nid" path="res://freezables/moving_belt/moving_belt.tscn" id="1_u0nhl"]
+
+[sub_resource type="Curve2D" id="Curve2D_u0nhl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 31, 90, 0, 0, 0, 0, 167, 90)
+}
+point_count = 2
+
+[node name="MovingBeltShader" type="Node2D"]
+
+[node name="MovingBelt" parent="." instance=ExtResource("1_u0nhl")]
+curve = SubResource("Curve2D_u0nhl")

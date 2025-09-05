@@ -1,24 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwhodtrhy5nid"]
+[gd_scene load_steps=7 format=3 uid="uid://dwhodtrhy5nid"]
 
 [ext_resource type="Script" uid="uid://c5oytandxvq6m" path="res://freezables/moving_belt/moving_belt.gd" id="1_yw4hm"]
+[ext_resource type="Shader" uid="uid://3obmuvf45foq" path="res://freezables/moving_belt/starfield.gdshader" id="2_1qfyv"]
 [ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="2_jmptf"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_q3xvv"]
 
-[sub_resource type="Curve2D" id="Curve2D_jmptf"]
-bake_interval = 50.0
+[sub_resource type="Curve2D" id="Curve2D_q3xvv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61or5"]
+shader = ExtResource("2_1qfyv")
+shader_parameter/enabled = true
+shader_parameter/density = 150.0
+shader_parameter/layer_parascale = 2
+shader_parameter/speedx = 0.2
+shader_parameter/speedy = 0.0
+shader_parameter/star_horizontal_wave = 0.3
+shader_parameter/star_size = 3.0
+shader_parameter/twinkle_effect = 0.6
+shader_parameter/twinkle_speed = 0.3
+shader_parameter/fbm_strength = 0.12
+shader_parameter/fbm_mix = 0.07
+shader_parameter/fbm_freq = 4.0
+shader_parameter/fbm_amp = 1.5
+shader_parameter/fbm_speed = 5.0
+shader_parameter/warp_scale = 2.0
+shader_parameter/cloud_freq = 40.0
+shader_parameter/cloud_amp = 0.02
+shader_parameter/cloud_speed = 5.0
+shader_parameter/cloud_color_ci1 = 0.75
+shader_parameter/cloud_color_ci2 = 0.45
+shader_parameter/cloud_color_ci3 = 0.9
+shader_parameter/cloud_color_shiftx = 0.0
+shader_parameter/cloud_color_shifty = 0.0
+shader_parameter/background_color = Color(0.02, 0.04, 0.12, 1)
 
 [node name="MovingBelt" type="Path2D"]
-curve = SubResource("Curve2D_jmptf")
+curve = SubResource("Curve2D_q3xvv")
 script = ExtResource("1_yw4hm")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+material = SubResource("ShaderMaterial_61or5")
 texture = ExtResource("2_jmptf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 
 [node name="AnchorPoint" type="PathFollow2D" parent="."]
+position = Vector2(20, 49)
 rotates = false
 loop = false
 
