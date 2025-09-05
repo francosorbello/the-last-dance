@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name APlayer
 
+signal dead
+
 @export var jump_data : JumpData
 @export var player_data : PlayerData
 
@@ -8,6 +10,18 @@ class_name APlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var checkpoint_manager : Node
+
+var _initial_pos : Vector2
+
+func _ready():
+	checkpoint_manager = get_tree().get_first_node_in_group("checkpoint_manager")
+	if not checkpoint_manager:
+		_initial_pos = global_position
+	
+	await get_tree().create_timer(0.1).timeout
+	global_position = _get_respawn_point()	
 
 func _unhandled_input(event):
 	if event.is_action_pressed("jump") and debug_jump_enabled:
@@ -57,5 +71,11 @@ func play_run_anim():
 #endregion
 
 func _on_hurt_area_damage_taken() -> void:
-	print("die")
+	global_position = _get_respawn_point()
+	dead.emit()
 	pass # Replace with function body.
+
+func _get_respawn_point():
+	if checkpoint_manager:
+		return checkpoint_manager.get_checkpoint_position()
+	return _initial_pos

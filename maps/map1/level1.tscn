@@ -1,13 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3xt3kt03m48e"]
+[gd_scene load_steps=17 format=4 uid="uid://b3xt3kt03m48e"]
 
 [ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="1_dm508"]
+[ext_resource type="TileSet" uid="uid://cyke4okorrvbe" path="res://tileset/TileSet_16px.tres" id="2_27s62"]
 [ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="2_hy2or"]
 [ext_resource type="Script" uid="uid://tm06w6rk3m3g" path="res://maps/room_camera.gd" id="3_7y1lk"]
+[ext_resource type="PackedScene" uid="uid://bl72hddincbwa" path="res://freezables/jump_pad/jump_pad.tscn" id="5_bc83r"]
+[ext_resource type="PackedScene" uid="uid://bpmicnn75rcmd" path="res://freezables/platform/platform.tscn" id="6_c6cj8"]
+[ext_resource type="PackedScene" uid="uid://ddheshicik6w8" path="res://checkpoints/checkpoint_manager.tscn" id="7_84m1b"]
+[ext_resource type="PackedScene" uid="uid://bnbucya5fuji0" path="res://checkpoints/checkpoint.tscn" id="8_3xa4f"]
+[ext_resource type="AudioStream" uid="uid://cos6ss8mfd4rc" path="res://sounds/music/Dark Allure III.ogg" id="9_n0nrh"]
 
-[node name="ContinuousGameMap" type="Node"]
+[sub_resource type="Curve2D" id="Curve2D_84m1b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 728, 113, 0, 0, 0, 0, 834, 113)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_c6cj8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1027, 270, 0, 0, 0, 0, 1027, 13)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_3xa4f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 950, 312, 0, 0, 0, 0, 1174, 313)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_n0nrh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, 50, 0, 0, 0, 0, 429, 50)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xa4f"]
+size = Vector2(20, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0nrh"]
+size = Vector2(20, 106)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_g07r2"]
+stream_count = 1
+stream_0 = ExtResource("9_n0nrh")
+
+[node name="Level1V1" type="Node"]
 
 [node name="RoomLayoutTiles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=")
 tile_set = ExtResource("1_dm508")
+
+[node name="LvlLayout" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAHAA8ABQALAAsAAAAPAA8ABQALAAsAAAATAA8ABQAGAAsAAAATAAcABQAGAAYAAAAXAAsABQAGAAMAAAAbAAsABQAGAAMAAAAfAAsABQAGAAMAAAAjAAsABQAGAAMAAAAnAAsABQAGAAMAAAAnAAkABQAGAAYAAAAjAAkABQADAAYAAAAjAAUABQADAAMAAAAlAAUABQADAAMAAAAnAAUABQADAAMAAAArAAsABQAGAAMAAAAvAAsABQAGAAMAAAAzAAsABQAGAAMAAAA3AAsABQAGAAMAAAA7AAsABQAGAAMAAAA5AAkABQAGAAYAAAA7AAkABQADAAYAAAA/AAsABQAGAAMAAABDAAsABQAGAAMAAABHAAsABQAGAAMAAABLAAsABQAGAAMAAABPAAsABQAGAAMAAAA9AAkABQADAAYAAAA/AAkABQADAAYAAABTAAsABQAGAAMAAABXAAsABQAGAAMAAABbAAsABQAGAAMAAABfAAsABQAGAAMAAABjAAsABQAGAAMAAABYAAkABQAGAAYAAABcAAkABQAGAAMAAABgAAkABQAGAAMAAABnAAwABQAGAAMAAABrAAwABQAGAAMAAABvAAwABQAGAAMAAABzAAwABQAGAAMAAAB3AAwABQAGAAMAAABiAAkABQADAAMAAABjAAkABQABAAMAAABlAAoABQADAAMAAABlAAgABQADAAEAAABmAAoABQABAAMAAABmAAgABQABAAEAAABAAAkAAAABAAEAAABBAAkAAAABAAEAAABCAAkAAAABAAEAAABDAAkAAAABAAEAAABEAAkAAAABAAEAAABFAAkAAAABAAEAAABGAAkAAAABAAEAAABHAAkAAAABAAEAAABIAAkAAAABAAEAAABJAAkAAAABAAEAAABKAAkAAAABAAEAAABLAAkAAAABAAEAAABMAAkAAAABAAEAAABNAAkAAAABAAEAAABOAAkAAAABAAEAAABPAAkAAAABAAEAAABQAAkAAAABAAEAAABRAAkAAAABAAEAAABSAAkAAAABAAEAAABTAAkAAAABAAEAAABUAAkAAAABAAEAAABnAAoAAAABAAEAAABoAAoAAAABAAEAAABpAAoAAAABAAEAAABqAAoAAAABAAEAAABrAAoAAAABAAEAAABsAAoAAAABAAEAAABtAAoAAAABAAEAAABuAAoAAAABAAEAAABvAAoAAAABAAEAAABwAAoAAAABAAEAAABxAAoAAAABAAEAAAByAAoAAAABAAEAAABzAAoAAAABAAEAAAB0AAoAAAABAAEAAAB1AAoAAAABAAEAAAB2AAoAAAABAAEAAAB3AAoAAAABAAEAAAB4AAoAAAABAAEAAAB5AAoAAAABAAEAAAB6AAoAAAABAAEAAAB7AAoAAAABAAEAAAB8AAoAAAABAAEAAAB9AAoAAAABAAEAAAB+AAoAAAABAAEAAAB/AAoAAAABAAEAAACAAAoAAAABAAEAAACBAAoAAAABAAEAAACCAAoAAAABAAEAAAB5AAUABQAGAAMAAABlAAcABQADAAMAAABmAAcABQABAAMAAABlAAUABQADAAEAAABmAAUABQABAAEAAACGAAoABQAGAAYAAABDAAEABQAGAAMAAABHAAEABQAGAAMAAAA=")
+tile_set = ExtResource("2_27s62")
 
 [node name="Player" parent="." instance=ExtResource("2_hy2or")]
 position = Vector2(170, 102)
@@ -18,3 +63,89 @@ position_smoothing_speed = 10.0
 script = ExtResource("3_7y1lk")
 target_to_follow = NodePath("../Player")
 follow_smoothing = 0.3
+
+[node name="Room1" type="Node2D" parent="."]
+
+[node name="JumpPad" parent="Room1" instance=ExtResource("5_bc83r")]
+position = Vector2(240, 136)
+
+[node name="Room3" type="Node2D" parent="."]
+
+[node name="JumpPad" parent="Room3" instance=ExtResource("5_bc83r")]
+position = Vector2(688, 168)
+
+[node name="Room2" type="Node2D" parent="."]
+
+[node name="JumpPad" parent="Room2" instance=ExtResource("5_bc83r")]
+position = Vector2(368, 168)
+
+[node name="JumpPad2" parent="Room2" instance=ExtResource("5_bc83r")]
+position = Vector2(463, 120)
+
+[node name="Path2D" type="Path2D" parent="Room2"]
+position = Vector2(23, -41)
+curve = SubResource("Curve2D_84m1b")
+
+[node name="Platform" parent="Room2/Path2D" instance=ExtResource("6_c6cj8")]
+position = Vector2(728, 113)
+
+[node name="Room4" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Room4"]
+position = Vector2(40, -48)
+curve = SubResource("Curve2D_c6cj8")
+
+[node name="Platform" parent="Room4/Path2D" instance=ExtResource("6_c6cj8")]
+position = Vector2(1027, 270)
+loop = true
+
+[node name="Path2D2" type="Path2D" parent="Room4"]
+position = Vector2(175, -212)
+curve = SubResource("Curve2D_3xa4f")
+
+[node name="Platform" parent="Room4/Path2D2" instance=ExtResource("6_c6cj8")]
+position = Vector2(1151.62, 312.9)
+progress = 201.602
+speed = 65.0
+initial_progress_ratio = 0.9
+
+[node name="Room5" type="Node2D" parent="."]
+position = Vector2(1625, 87)
+
+[node name="JumpPad2" parent="Room5" instance=ExtResource("5_bc83r")]
+position = Vector2(-60, 53)
+
+[node name="Path2D" type="Path2D" parent="Room5"]
+curve = SubResource("Curve2D_n0nrh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Room5/Path2D"]
+position = Vector2(64, 50)
+loop = false
+
+[node name="JumpPad" parent="Room5/Path2D/PathFollow2D" instance=ExtResource("5_bc83r")]
+position = Vector2(0, -10)
+
+[node name="CheckpointManager" parent="." instance=ExtResource("7_84m1b")]
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("8_3xa4f")]
+position = Vector2(988, 81)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_3xa4f")
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointManager/Checkpoint"]
+
+[node name="Checkpoint2" parent="CheckpointManager" instance=ExtResource("8_3xa4f")]
+position = Vector2(1624, 69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint2"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_n0nrh")
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointManager/Checkpoint2"]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_g07r2")
+volume_db = -10.0
+autoplay = true

@@ -24,7 +24,7 @@ func create_belt():
 	var start_point = curve.get_baked_points()[0]
 	var end_point = curve.get_baked_points()[curve.get_baked_points().size()-1]
 
-	direction = (end_point - start_point).normalized()
+	direction = (end_point - start_point).normalized().round()
 
 	var p1 = Vector2(start_point.x,start_point.y + width/2)
 	var p2 = Vector2(end_point.x  , start_point.y + width/2)

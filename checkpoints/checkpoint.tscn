@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbucya5fuji0"]
+
+[ext_resource type="Script" uid="uid://b54cx16kmev2p" path="res://checkpoints/checkpoint.gd" id="1_21262"]
+
+[node name="Checkpoint" type="Area2D"]
+script = ExtResource("1_21262")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

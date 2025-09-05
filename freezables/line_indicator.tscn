@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnx8lvygcpvv5"]
+
+[ext_resource type="Script" uid="uid://i3kyqi4wq7hu" path="res://freezables/line_indicator.gd" id="1_6b2w2"]
+
+[node name="LineIndicator" type="Line2D"]
+closed = true
+width = 1.0
+script = ExtResource("1_6b2w2")

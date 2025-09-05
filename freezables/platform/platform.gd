@@ -8,6 +8,7 @@ extends PathFollow2D
         if Engine.is_editor_hint() and get_parent() and get_parent() is Path2D:
             progress_ratio = initial_progress_ratio
 
+
 var has_path : bool
 var _direction_modifier : int = 1
 
