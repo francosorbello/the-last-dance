@@ -37,6 +37,7 @@ func create_belt():
 	
 	$Area2D/Polygon2D.polygon = polygon
 	$Area2D/CollisionPolygon2D.polygon = polygon
+	$Line2D.points = polygon
 
 func _physics_process(delta):
 	if moving_entity:
@@ -49,6 +50,7 @@ func _physics_process(delta):
 func clear_belt():
 	$Area2D/Polygon2D.polygon = []
 	$Area2D/CollisionPolygon2D.polygon = []
+	$Line2D.points = []
 
 func attach(entity : Node2D):
 	if moving_entity or entity.get_parent() == $AnchorPoint: 

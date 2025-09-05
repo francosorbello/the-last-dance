@@ -1,19 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwhodtrhy5nid"]
+[gd_scene load_steps=8 format=3 uid="uid://dwhodtrhy5nid"]
 
 [ext_resource type="Script" uid="uid://c5oytandxvq6m" path="res://freezables/moving_belt/moving_belt.gd" id="1_yw4hm"]
 [ext_resource type="Shader" uid="uid://3obmuvf45foq" path="res://freezables/moving_belt/starfield.gdshader" id="2_1qfyv"]
 [ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="2_jmptf"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_q3xvv"]
+[ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="5_61or5"]
 
 [sub_resource type="Curve2D" id="Curve2D_q3xvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61or5"]
 shader = ExtResource("2_1qfyv")
-shader_parameter/enabled = true
+shader_parameter/enabled = false
 shader_parameter/density = 150.0
 shader_parameter/layer_parascale = 2
-shader_parameter/speedx = 0.2
-shader_parameter/speedy = 0.0
+shader_parameter/speedx = 1.49012e-07
+shader_parameter/speedy = 0.2
 shader_parameter/star_horizontal_wave = 0.3
 shader_parameter/star_size = 3.0
 shader_parameter/twinkle_effect = 0.6
@@ -33,6 +34,7 @@ shader_parameter/cloud_color_ci3 = 0.9
 shader_parameter/cloud_color_shiftx = 0.0
 shader_parameter/cloud_color_shifty = 0.0
 shader_parameter/background_color = Color(0.02, 0.04, 0.12, 1)
+shader_parameter/enabled_bg_color = Color(0.433704, 0.541262, 0.851105, 1)
 
 [node name="MovingBelt" type="Path2D"]
 curve = SubResource("Curve2D_q3xvv")
@@ -51,10 +53,19 @@ position = Vector2(20, 49)
 rotates = false
 loop = false
 
+[node name="Line2D" type="Line2D" parent="."]
+closed = true
+width = 1.0
+default_color = Color(0.716296, 0.716296, 0.716296, 1)
+antialiased = true
+
 [node name="DisabledTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="FreezableComponent" parent="." instance=ExtResource("3_q3xvv")]
+
+[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("5_61or5")]
+visual = NodePath("../../Area2D/Polygon2D")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]

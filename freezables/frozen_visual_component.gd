@@ -1,14 +1,18 @@
 extends Node
 
 @export var material : ShaderMaterial
-@export var sprite : Sprite2D
+@export var visual : CanvasItem
 
 var _material_instance : ShaderMaterial
 
 func _ready() -> void:
     await get_tree().process_frame
-    _material_instance = material.duplicate()
-    sprite.material = _material_instance
+    if visual.material == null:
+        _material_instance = material.duplicate()
+        visual.material = _material_instance
+    else:
+        _material_instance = visual.material
+    
     disable_visual()
 
 func enable_visual():

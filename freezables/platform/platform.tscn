@@ -26,7 +26,7 @@ one_way_collision = true
 
 [node name="FreezableComponent" parent="." instance=ExtResource("3_0v5mn")]
 
-[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("sprite") instance=ExtResource("4_55h73")]
-sprite = NodePath("../../StaticBody2D/Sprite2D")
+[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("4_55h73")]
+visual = NodePath("../../StaticBody2D/Sprite2D")
 
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
