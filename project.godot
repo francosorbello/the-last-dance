@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalEventSystem="*res://addons/ftr_tools/global_event_system/global_event_system.gd"
 SfxSoundManager="*res://sounds/sound_manager/sfx_sound_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
@@ -30,7 +31,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/ftr_tools/plugin.cfg")
+enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/ftr_tools/plugin.cfg")
 
 [input]
 
