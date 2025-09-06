@@ -14,7 +14,6 @@ rotates = false
 loop = false
 script = ExtResource("1_4ojcy")
 line_indicator_scene = ExtResource("5_x7ujd")
-debug_platform = null
 
 [node name="StaticBody2D" type="AnimatableBody2D" parent="."]
 collision_layer = 3

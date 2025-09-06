@@ -70,6 +70,9 @@ func play_run_anim():
 	$AnimationPlayer.play("run")
 #endregion
 
+func die():
+	_on_hurt_area_damage_taken()
+
 func _on_hurt_area_damage_taken() -> void:
 	global_position = _get_respawn_point()
 	dead.emit()

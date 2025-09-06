@@ -5,3 +5,4 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
         body.do_jump()
         $AudioStreamPlayer.pitch_scale = randf_range(0.7,1.3)
         $AudioStreamPlayer.play()
+        $AnimationPlayer.play("bounce")

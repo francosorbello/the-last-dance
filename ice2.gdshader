@@ -16,11 +16,11 @@ void fragment() {
 	noise_uv = noise_uv + moveDir * speed * TIME;
 	COLOR = texture(TEXTURE, UV); // Read from texture again.
 	vec4 noise_color = texture(noise_texture,noise_uv);
-	
+
 	if (enabled) {
 		COLOR.rgb = COLOR.rgb * noise_color.r * effect_intensity;
 		COLOR.xyz = COLOR.xyz * darken_intensity * effect_intensity;
-		COLOR.a = 1.0;			
+		COLOR.a = 1.0;
 	}
 }
 

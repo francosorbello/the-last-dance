@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbojxupfslta8"]
+
+[ext_resource type="Script" uid="uid://p7v01b4jpifk" path="res://freezables/projectile/projectile.gd" id="1_82dji"]
+[ext_resource type="Texture2D" uid="uid://trkfxi3k4kms" path="res://assets/fire-ball.png" id="1_cdkth"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="2_82dji"]
+[ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="3_ag8nu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k18y1"]
+atlas = ExtResource("1_cdkth")
+region = Rect2(0, 0, 52, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odiai"]
+atlas = ExtResource("1_cdkth")
+region = Rect2(52, 0, 52, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u2oh"]
+atlas = ExtResource("1_cdkth")
+region = Rect2(104, 0, 52, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2j5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k18y1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odiai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u2oh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ag8nu"]
+radius = 6.0
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_82dji")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j2j5p")
+frame_progress = 0.884797
+
+[node name="FreezableComponent" parent="." instance=ExtResource("2_82dji")]
+
+[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_ag8nu")]
+visual = NodePath("../../AnimatedSprite2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ag8nu")
