@@ -8,6 +8,8 @@ extends PathFollow2D
         if Engine.is_editor_hint() and get_parent() and get_parent() is Path2D:
             progress_ratio = initial_progress_ratio
 
+@export var show_path : bool
+@export var line_indicator_scene : PackedScene
 
 var has_path : bool
 var _direction_modifier : int = 1
@@ -16,6 +18,8 @@ func _ready():
     if get_parent() is Path2D:
         has_path = true
         progress_ratio = initial_progress_ratio
+        if show_path and not Engine.is_editor_hint():
+            get_parent().add_child.call_deferred(line_indicator_scene.instantiate())
 
 func _physics_process(delta):
     if Engine.is_editor_hint() or $FreezableComponent.frozen: 
@@ -23,7 +27,7 @@ func _physics_process(delta):
 
     if has_path:
         progress += speed * delta * _direction_modifier
-        if not loop and is_zero_approx(progress_ratio) or is_equal_approx(progress_ratio,1.0):
+        if not loop and (is_zero_approx(progress_ratio) or is_equal_approx(progress_ratio,1.0)):
             _direction_modifier *= -1
         
 func _on_freezable_component_on_freeze_toggle(_is_frozen:bool) -> void:

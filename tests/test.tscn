@@ -45,6 +45,7 @@ curve = SubResource("Curve2D_eig8f")
 
 [node name="Platform" parent="LinearPath" instance=ExtResource("3_7517i")]
 position = Vector2(4, 3)
+debug_platform = null
 
 [node name="JumpPad" parent="LinearPath/Platform" instance=ExtResource("4_ry45r")]
 position = Vector2(0, -25)
@@ -55,24 +56,28 @@ curve = SubResource("Curve2D_7517i")
 [node name="Platform" parent="CircularPath" instance=ExtResource("3_7517i")]
 position = Vector2(257, -21)
 loop = true
+debug_platform = null
 
 [node name="Platform2" parent="CircularPath" instance=ExtResource("3_7517i")]
 position = Vector2(327.952, -63.1471)
 progress = 88.8643
 loop = true
 initial_progress_ratio = 0.25
+debug_platform = null
 
 [node name="Platform3" parent="CircularPath" instance=ExtResource("3_7517i")]
 position = Vector2(383.897, -9.24216)
 progress = 177.729
 loop = true
 initial_progress_ratio = 0.5
+debug_platform = null
 
 [node name="Platform4" parent="CircularPath" instance=ExtResource("3_7517i")]
 position = Vector2(326.894, 31.5718)
 progress = 252.375
 loop = true
 initial_progress_ratio = 0.71
+debug_platform = null
 
 [node name="MovingBelt" parent="." instance=ExtResource("5_dsb46")]
 position = Vector2(-324, 91)

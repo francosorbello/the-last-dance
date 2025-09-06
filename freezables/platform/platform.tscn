@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpmicnn75rcmd"]
+[gd_scene load_steps=7 format=3 uid="uid://bpmicnn75rcmd"]
 
 [ext_resource type="Script" uid="uid://cn0p8bxdwqe38" path="res://freezables/platform/platform.gd" id="1_4ojcy"]
 [ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="1_7p4g5"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_0v5mn"]
 [ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="4_55h73"]
+[ext_resource type="PackedScene" uid="uid://cnx8lvygcpvv5" path="res://freezables/line_indicator.tscn" id="5_x7ujd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p4g5"]
 size = Vector2(64, 16)
@@ -12,6 +13,8 @@ size = Vector2(64, 16)
 rotates = false
 loop = false
 script = ExtResource("1_4ojcy")
+line_indicator_scene = ExtResource("5_x7ujd")
+debug_platform = null
 
 [node name="StaticBody2D" type="AnimatableBody2D" parent="."]
 collision_layer = 3
