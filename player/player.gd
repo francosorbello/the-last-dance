@@ -40,6 +40,7 @@ func get_gravity_data():
 	return jump_data.get_fall_gravity()
 
 func do_freeze():
+	$FreezeSound.play()
 	for freezable in get_tree().get_nodes_in_group("freezable"):
 		if freezable.has_method("toggle_freeze"):
 			freezable.toggle_freeze()
@@ -75,6 +76,8 @@ func die():
 
 func _on_hurt_area_damage_taken() -> void:
 	global_position = _get_respawn_point()
+	$DeadAnimPlayer.play_anim($Sprite2D)
+	$DeadSound.play()
 	dead.emit()
 	pass # Replace with function body.
 

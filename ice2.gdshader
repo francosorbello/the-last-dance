@@ -20,7 +20,6 @@ void fragment() {
 	if (enabled) {
 		COLOR.rgb = COLOR.rgb * noise_color.r * effect_intensity;
 		COLOR.xyz = COLOR.xyz * darken_intensity * effect_intensity;
-		COLOR.a = 1.0;
 	}
 }
 

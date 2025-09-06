@@ -42,7 +42,7 @@ script = ExtResource("1_82dji")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j2j5p")
-frame_progress = 0.884797
+frame_progress = 0.50144
 
 [node name="FreezableComponent" parent="." instance=ExtResource("2_82dji")]
 
@@ -54,3 +54,6 @@ visual = NodePath("../../AnimatedSprite2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ag8nu")
+
+[connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

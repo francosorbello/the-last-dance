@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://ysd528wfqwyg"]
+[gd_scene load_steps=13 format=4 uid="uid://ysd528wfqwyg"]
 
 [ext_resource type="TileSet" uid="uid://cyke4okorrvbe" path="res://tileset/TileSet_16px.tres" id="1_yggfj"]
 [ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="2_eig8f"]
 [ext_resource type="PackedScene" uid="uid://bpmicnn75rcmd" path="res://freezables/platform/platform.tscn" id="3_7517i"]
 [ext_resource type="PackedScene" uid="uid://bl72hddincbwa" path="res://freezables/jump_pad/jump_pad.tscn" id="4_ry45r"]
 [ext_resource type="PackedScene" uid="uid://dwhodtrhy5nid" path="res://freezables/moving_belt/moving_belt.tscn" id="5_dsb46"]
+[ext_resource type="PackedScene" uid="uid://ddheshicik6w8" path="res://checkpoints/checkpoint_manager.tscn" id="6_jenrn"]
+[ext_resource type="PackedScene" uid="uid://bnbucya5fuji0" path="res://checkpoints/checkpoint.tscn" id="7_mm0ke"]
+[ext_resource type="PackedScene" uid="uid://cds3c6sx21yqn" path="res://freezables/projectile/projectile_spawner.tscn" id="8_mm0ke"]
 
 [sub_resource type="Curve2D" id="Curve2D_eig8f"]
 _data = {
@@ -25,10 +28,13 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymr3d"]
+size = Vector2(20, 85)
+
 [node name="test" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAHAAsABQALAAsAAAAPAAsABQALAAsAAAAXAAsABQALAAsAAAD//w8ABQALAAsAAAD3/w8ABQALAAsAAADv/w8ABQALAAsAAADo/wcAAAABAAEAAADo/wYAAAABAAEAAADo/wUAAAABAAEAAADo/wQAAAABAAEAAADo/wMAAAABAAEAAADo/wIAAAABAAEAAADo/wEAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAAHAAsABQALAAsAAAAPAAsABQALAAsAAAAXAAsABQALAAsAAAD//w8ABQALAAsAAAD3/w8ABQALAAsAAADv/w8ABQALAAsAAADo/wcAAAABAAEAAADo/wYAAAABAAEAAADo/wUAAAABAAEAAADo/wQAAAABAAEAAADo/wMAAAABAAEAAADo/wIAAAABAAEAAADo/wEAAAABAAEAAAAfAA4ABQALAAsAAAAnAA4ABQALAAsAAAAvAA4ABQALAAsAAAA3AA4ABQALAAsAAAApAAQABQADAAYAAAA=")
 tile_set = ExtResource("1_yggfj")
 
 [node name="Player" parent="." instance=ExtResource("2_eig8f")]
@@ -39,6 +45,9 @@ position = Vector2(-52, -36)
 
 [node name="JumpPad2" parent="." instance=ExtResource("4_ry45r")]
 position = Vector2(405, 83)
+
+[node name="JumpPad4" parent="." instance=ExtResource("4_ry45r")]
+position = Vector2(748, 121)
 
 [node name="LinearPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_eig8f")
@@ -81,3 +90,21 @@ move_speed = 50.0
 
 [node name="JumpPad3" parent="." instance=ExtResource("4_ry45r")]
 position = Vector2(-39, 136)
+
+[node name="CheckpointManager" parent="." instance=ExtResource("6_jenrn")]
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("7_mm0ke")]
+initial = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(125, 14)
+shape = SubResource("RectangleShape2D_ymr3d")
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(124, 29)
+
+[node name="ProjectileSpawner" parent="." instance=ExtResource("8_mm0ke")]
+position = Vector2(832, 44)
+direction = Vector2(-1, 0)
+override_speed = true
+override_speed_value = 100.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://buc2hq5m81801"]
+[gd_scene load_steps=27 format=3 uid="uid://buc2hq5m81801"]
 
 [ext_resource type="Script" uid="uid://jslqxen8eknj" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_oul6g"]
@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://ddxawqbf260x0" path="res://sounds/footstep2.wav" id="10_yllr7"]
 [ext_resource type="Script" uid="uid://d38vhllxhfv3n" path="res://player/hurt_area.gd" id="11_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://nk1aatfajmy" path="res://player/better_interactable_manager.tscn" id="14_kb6p2"]
+[ext_resource type="PackedScene" uid="uid://bceok6cpixdoi" path="res://player/dead_anim_player.tscn" id="14_wodsf"]
+[ext_resource type="AudioStream" uid="uid://ct22lc0856ns1" path="res://sounds/Retro Magic 06.mp3" id="15_wodsf"]
+[ext_resource type="AudioStream" uid="uid://c8ari1bg8kdxy" path="res://sounds/Retro FootStep Metal 01.mp3" id="16_32hag"]
 
 [sub_resource type="Shader" id="Shader_yllr7"]
 code = "shader_type canvas_item;
@@ -261,6 +264,15 @@ debug_color = Color(0.98384, 0, 0.349269, 0.42)
 [node name="BetterInteractableManager" parent="." instance=ExtResource("14_kb6p2")]
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="DeadAnimPlayer" parent="." instance=ExtResource("14_wodsf")]
+
+[node name="FreezeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_wodsf")
+volume_db = -5.0
+
+[node name="DeadSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_32hag")
 
 [connection signal="timeout" from="StateMachine/MovingState/StepTimer" to="StateMachine/MovingState" method="_on_step_timer_timeout"]
 [connection signal="body_entered" from="HurtArea" to="HurtArea" method="_on_body_entered"]
