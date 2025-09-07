@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://xa8ntkiwaptg"]
+
+[ext_resource type="Script" uid="uid://dp4a2lxgt1yjx" path="res://utils/vos_enable_and_disappear.gd" id="1_bca12"]
+
+[node name="VOSEnableAndDisappear" type="VisibleOnScreenEnabler2D"]
+script = ExtResource("1_bca12")
+
+[connection signal="screen_entered" from="." to="." method="_on_screen_entered"]

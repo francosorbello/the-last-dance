@@ -18,12 +18,12 @@ func _ready():
 			_frozen_visual_component = child
 			_frozen_visual_component.setup_finished.connect(_on_visual_setup_finished)
 		if child is VisibleOnScreenNotifier2D and only_active_when_visible:
-			_setup_screen_notifier(child)
+			_setup_screen_notifier.call_deferred(child)
 
 func _on_visual_setup_finished():
 	if start_frozen:
 		_can_be_activated = true
-		toggle_freeze()
+		# toggle_freeze()
 		_can_be_activated = !only_active_when_visible
 
 

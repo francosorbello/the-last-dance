@@ -23,7 +23,9 @@ func _ready():
 		_initial_pos = global_position
 	
 	await get_tree().create_timer(0.1).timeout
-	global_position = _get_respawn_point()	
+	# global_position = _get_respawn_point()	
+	DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("jump") and debug_jump_enabled:
@@ -87,3 +89,10 @@ func _get_respawn_point():
 	if checkpoint_manager:
 		return checkpoint_manager.get_checkpoint_position()
 	return _initial_pos
+
+
+func _on_dialogue_started(_res : DialogueResource):
+	$StateMachine.transition_to("ReadingState")
+
+func _on_dialogue_ended(_res : DialogueResource):
+	$StateMachine.transition_to("IdleState")

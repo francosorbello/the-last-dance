@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpmicnn75rcmd"]
+[gd_scene load_steps=8 format=3 uid="uid://bpmicnn75rcmd"]
 
 [ext_resource type="Script" uid="uid://cn0p8bxdwqe38" path="res://freezables/platform/platform.gd" id="1_4ojcy"]
 [ext_resource type="Texture2D" uid="uid://dgvp4j3v7donw" path="res://assets/platform.png" id="1_7p4g5"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_0v5mn"]
 [ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="4_55h73"]
 [ext_resource type="PackedScene" uid="uid://cnx8lvygcpvv5" path="res://freezables/line_indicator.tscn" id="5_x7ujd"]
+[ext_resource type="PackedScene" uid="uid://xa8ntkiwaptg" path="res://utils/vos_enable_and_disappear.tscn" id="6_lvi6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p4g5"]
 size = Vector2(64, 16)
@@ -32,8 +33,8 @@ only_active_when_visible = true
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("4_55h73")]
 visual = NodePath("../../StaticBody2D/Sprite2D")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-1.5, 2.38419e-07)
+[node name="VOSEnableAndDisappear" parent="." instance=ExtResource("6_lvi6b")]
+position = Vector2(-0.500002, 2.38419e-07)
 scale = Vector2(3.25, 1.6)
 
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]

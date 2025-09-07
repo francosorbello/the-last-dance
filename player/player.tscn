@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://buc2hq5m81801"]
+[gd_scene load_steps=28 format=3 uid="uid://buc2hq5m81801"]
 
 [ext_resource type="Script" uid="uid://jslqxen8eknj" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_oul6g"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bnq0hnhjidrxa" path="res://player/states/belting_state.gd" id="10_8t03j"]
 [ext_resource type="AudioStream" uid="uid://ddxawqbf260x0" path="res://sounds/footstep2.wav" id="10_yllr7"]
 [ext_resource type="Script" uid="uid://d38vhllxhfv3n" path="res://player/hurt_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://bnk2wob7nnt41" path="res://player/states/reading_state.gd" id="12_tqiix"]
 [ext_resource type="PackedScene" uid="uid://nk1aatfajmy" path="res://player/better_interactable_manager.tscn" id="14_kb6p2"]
 [ext_resource type="PackedScene" uid="uid://bceok6cpixdoi" path="res://player/dead_anim_player.tscn" id="14_wodsf"]
 [ext_resource type="AudioStream" uid="uid://ct22lc0856ns1" path="res://sounds/Retro Magic 06.mp3" id="15_wodsf"]
@@ -248,6 +249,9 @@ wait_time = 0.2
 
 [node name="BeltingState" type="Node" parent="StateMachine"]
 script = ExtResource("10_8t03j")
+
+[node name="ReadingState" type="Node" parent="StateMachine"]
+script = ExtResource("12_tqiix")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

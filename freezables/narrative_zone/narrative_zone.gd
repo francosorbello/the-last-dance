@@ -18,6 +18,6 @@ func _on_frozen_visual_component_setup_finished() -> void:
 func _on_freezable_component_on_freeze_toggle(is_frozen:bool) -> void:
 	if not is_frozen:
 		$Bonfire.play()
-		await get_tree().create_timer(0.4).timeout
+		# await get_tree().create_timer(0.4).timeout
 		_balloon = DialogueManager.show_dialogue_balloon(dialogue,"start")
 	

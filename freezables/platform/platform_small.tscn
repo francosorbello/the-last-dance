@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjh8cl7oqxdl5"]
+
+[ext_resource type="Script" uid="uid://cn0p8bxdwqe38" path="res://freezables/platform/platform.gd" id="1_ik5o1"]
+[ext_resource type="PackedScene" uid="uid://cnx8lvygcpvv5" path="res://freezables/line_indicator.tscn" id="2_pjxf8"]
+[ext_resource type="Texture2D" uid="uid://bin2owvmssq6m" path="res://assets/jump_pad2.png" id="3_ik5o1"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="4_wyg7c"]
+[ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="5_ocka4"]
+[ext_resource type="PackedScene" uid="uid://xa8ntkiwaptg" path="res://utils/vos_enable_and_disappear.tscn" id="6_e22o7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p4g5"]
+size = Vector2(32, 16)
+
+[node name="Platform" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_ik5o1")
+line_indicator_scene = ExtResource("2_pjxf8")
+
+[node name="StaticBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 3
+sync_to_physics = false
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("3_ik5o1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_7p4g5")
+one_way_collision = true
+
+[node name="FreezableComponent" parent="." instance=ExtResource("4_wyg7c")]
+only_active_when_visible = true
+
+[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("5_ocka4")]
+visual = NodePath("../../StaticBody2D/Sprite2D")
+
+[node name="VOSEnableAndDisappear" parent="." instance=ExtResource("6_e22o7")]
+position = Vector2(-0.500002, 2.38419e-07)
+scale = Vector2(3.25, 1.6)
+
+[connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
