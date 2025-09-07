@@ -7,6 +7,7 @@ signal dead
 @export var player_data : PlayerData
 
 @export var debug_jump_enabled : bool = false
+@export var flip_h : bool
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -16,6 +17,7 @@ var checkpoint_manager : Node
 var _initial_pos : Vector2
 
 func _ready():
+	$Sprite2D.flip_h = flip_h
 	checkpoint_manager = get_tree().get_first_node_in_group("checkpoint_manager")
 	if not checkpoint_manager:
 		_initial_pos = global_position

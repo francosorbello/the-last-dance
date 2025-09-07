@@ -15,9 +15,9 @@ func _ready() -> void:
 		visual.material = _material_instance
 	else:
 		_material_instance = visual.material
+	disable_visual()
 	setup_finished.emit()
 	is_setup = true
-	disable_visual()
 
 func enable_visual():
 	_material_instance.set_shader_parameter("enabled",true)

@@ -87,7 +87,7 @@ initial_progress_ratio = 0.71
 [node name="MovingBelt" parent="." instance=ExtResource("5_dsb46")]
 position = Vector2(-324, 91)
 curve = SubResource("Curve2D_dsb46")
-move_speed = 50.0
+move_speed = 100.0
 
 [node name="JumpPad3" parent="." instance=ExtResource("4_ry45r")]
 position = Vector2(-39, 136)

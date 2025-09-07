@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ddpfgbrw3m0d8"]
+
+[ext_resource type="Shader" uid="uid://dcvhrwyu3xhus" path="res://tests/water_tile_shader.gdshader" id="1_7hmrg"]
+
+[resource]
+shader = ExtResource("1_7hmrg")
+shader_parameter/replacement_color = Color(0.298039, 0.772549, 0.894118, 1)
+shader_parameter/WATER_COL = Color(0, 0, 0, 1)
+shader_parameter/WATER2_COL = Color(0.00246435, 0.117164, 0.190457, 1)
+shader_parameter/FOAM_COL = Color(0, 0, 0, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(5, 5)
+shader_parameter/offset = Vector2(0, 0)

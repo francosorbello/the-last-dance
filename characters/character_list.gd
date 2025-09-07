@@ -10,3 +10,9 @@ func get_portrait_for(character : String) -> Texture:
             return ch.portrait
     
     return blank_portrait
+
+func get_voice_for(character : String) -> AudioStream:
+    for ch in characters:
+        if ch.character_name == character or ch.code_name == character:
+            return ch.voice
+    return null

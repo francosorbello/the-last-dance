@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://camdghmr4qjx6"]
+
+[ext_resource type="Script" uid="uid://de6wsta0hibih" path="res://freezables/narrative_zone/narrative_zone.gd" id="1_5wg0u"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="1_j0hb7"]
+[ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="3_55xxq"]
+[ext_resource type="Texture2D" uid="uid://cqc7eyr16nfpy" path="res://assets/bonfire/Bonfire_1.png" id="3_vt1p5"]
+[ext_resource type="Texture2D" uid="uid://cyebac0eay8ip" path="res://assets/bonfire/Bonfire_2.png" id="4_qgott"]
+[ext_resource type="Texture2D" uid="uid://yogheslnqv21" path="res://assets/bonfire/Bonfire_3.png" id="5_yomxi"]
+[ext_resource type="Texture2D" uid="uid://2jbx7822hx58" path="res://assets/bonfire/Bonfire_4.png" id="6_55xxq"]
+[ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="7_qgott"]
+[ext_resource type="Texture2D" uid="uid://drmt7qn3jutib" path="res://assets/GraySamuraiStand.png" id="8_yomxi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6eb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vt1p5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qgott")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yomxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_55xxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="NarrativeZone" type="Node2D"]
+script = ExtResource("1_5wg0u")
+
+[node name="FreezableComponent" parent="." instance=ExtResource("1_j0hb7")]
+only_active_when_visible = true
+start_frozen = true
+
+[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_55xxq")]
+visual = NodePath("../..")
+
+[node name="Bonfire" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_r6eb6")
+frame_progress = 0.957144
+
+[node name="Lover" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(22, 7)
+texture = ExtResource("7_qgott")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(24, 21, 18, 27)
+
+[node name="Steed" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-20, 5)
+texture = ExtResource("8_yomxi")
+
+[connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
+[connection signal="setup_finished" from="FreezableComponent/FrozenVisualComponent" to="." method="_on_frozen_visual_component_setup_finished"]

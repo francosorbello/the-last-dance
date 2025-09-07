@@ -66,6 +66,7 @@ func _ready() -> void:
 
 	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
 	add_child(mutation_cooldown)
+	dialogue_label.spoke.connect(_on_spoke)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -112,8 +113,10 @@ func apply_dialogue_line() -> void:
 	# portrait setup
 	if dialogue_line.character.is_empty():
 		%CharacterPortrait.texture = empty_portrait
+		$TypeSound.stream = null
 	else:
-		$%CharacterPortrait.texture = character_data.get_portrait_for(dialogue_line.character)
+		%CharacterPortrait.texture = character_data.get_portrait_for(dialogue_line.character)
+		$TypeSound.stream = character_data.get_voice_for(dialogue_line.character)
 
 	# Show our balloon
 	balloon.show()
@@ -183,5 +186,9 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
+func _on_spoke(_letter, _letter_index, _speed):
+	if not $TypeSound.playing and $TypeSound.stream != null:
+		$TypeSound.pitch_scale = randf_range(0.7,1.3)
+		$TypeSound.play()
 
 #endregion

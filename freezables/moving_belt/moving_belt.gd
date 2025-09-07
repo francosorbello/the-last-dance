@@ -4,7 +4,6 @@ extends Path2D
 @export_tool_button("Create", "Callable") var create_belt_action = create_belt
 @export var width : float = 30
 @export var move_speed : float = 30
-@export var use_entity_speed : bool = false
 
 var attached_entity : Node2D
 var prev_attached_entity : Node2D

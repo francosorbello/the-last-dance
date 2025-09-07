@@ -27,8 +27,13 @@ shape = SubResource("RectangleShape2D_7p4g5")
 one_way_collision = true
 
 [node name="FreezableComponent" parent="." instance=ExtResource("3_0v5mn")]
+only_active_when_visible = true
 
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("4_55h73")]
 visual = NodePath("../../StaticBody2D/Sprite2D")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-1.5, 2.38419e-07)
+scale = Vector2(3.25, 1.6)
 
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]

@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://d07ydcgd7xotw"]
+[gd_scene load_steps=6 format=3 uid="uid://d07ydcgd7xotw"]
 
 [ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="1_whv3i"]
+[ext_resource type="TileSet" uid="uid://bouie4fede3je" path="res://maps/prettier_tiles.tres" id="2_br62v"]
 [ext_resource type="Script" uid="uid://tm06w6rk3m3g" path="res://maps/room_camera.gd" id="2_ulupt"]
 [ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="3_br62v"]
+[ext_resource type="PackedScene" uid="uid://ddheshicik6w8" path="res://checkpoints/checkpoint_manager.tscn" id="5_xg0fc"]
 
 [node name="ContinuousGameMap" type="Node"]
 
-[node name="RoomLayoutTiles" type="TileMapLayer" parent="."]
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="RoomLayoutTiles" type="TileMapLayer" parent="Tilemaps"]
 tile_set = ExtResource("3_br62v")
+
+[node name="FloorAndCeilTiles" type="TileMapLayer" parent="Tilemaps"]
+tile_set = ExtResource("2_br62v")
+
+[node name="DamageTiles" type="TileMapLayer" parent="Tilemaps"]
+tile_set = ExtResource("2_br62v")
+
+[node name="DetailTiles" type="TileMapLayer" parent="Tilemaps"]
 
 [node name="Player" parent="." instance=ExtResource("1_whv3i")]
 position = Vector2(170, 102)
@@ -18,3 +30,5 @@ position_smoothing_speed = 10.0
 script = ExtResource("2_ulupt")
 target_to_follow = NodePath("../Player")
 follow_smoothing = 0.3
+
+[node name="CheckpointManager" parent="." instance=ExtResource("5_xg0fc")]

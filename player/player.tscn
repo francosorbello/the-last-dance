@@ -213,7 +213,6 @@ player_data = ExtResource("3_yw30f")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_wodsf")
 texture = ExtResource("1_oul6g")
-flip_h = true
 hframes = 14
 vframes = 8
 frame = 1
