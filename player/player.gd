@@ -83,7 +83,13 @@ func _on_hurt_area_damage_taken() -> void:
 	$DeadAnimPlayer.play_anim($Sprite2D)
 	$DeadSound.play()
 	dead.emit()
+	_restart_freezables()
 	pass # Replace with function body.
+
+func _restart_freezables():
+	for freezable in get_tree().get_nodes_in_group("freezable"):
+		if freezable.has_method("restart"):
+			freezable.restart()	
 
 func _get_respawn_point():
 	if checkpoint_manager:

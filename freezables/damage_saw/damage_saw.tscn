@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3tenrcjl2ylt"]
+[gd_scene load_steps=13 format=3 uid="uid://b3tenrcjl2ylt"]
 
 [ext_resource type="Script" uid="uid://55a6merh5k1s" path="res://freezables/damage_saw/damage_saw.gd" id="1_mv1vq"]
 [ext_resource type="Texture2D" uid="uid://chg4i00fn0622" path="res://assets/sawblade.png" id="2_7us3r"]
+[ext_resource type="PackedScene" uid="uid://cnx8lvygcpvv5" path="res://freezables/line_indicator.tscn" id="2_56lsb"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_7us3r"]
 [ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="4_e3p66"]
 [ext_resource type="PackedScene" uid="uid://xa8ntkiwaptg" path="res://utils/vos_enable_and_disappear.tscn" id="5_u4lo1"]
@@ -46,11 +47,14 @@ animations = [{
 radius = 8.06226
 
 [node name="DamageSaw" type="PathFollow2D"]
+rotates = false
+loop = false
 script = ExtResource("1_mv1vq")
+line_indicator_scene = ExtResource("2_56lsb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wrblr")
-frame_progress = 0.311205
+frame_progress = 0.3511
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -60,13 +64,19 @@ shape = SubResource("CircleShape2D_mv1vq")
 [node name="FreezableComponent" parent="." instance=ExtResource("3_7us3r")]
 only_active_when_visible = true
 
+[node name="VisibleOnScreenEnabler2D" parent="FreezableComponent" index="0"]
+position = Vector2(0, -1)
+scale = Vector2(1.2, 1.6)
+
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("4_e3p66")]
 visual = NodePath("../../AnimatedSprite2D")
 
 [node name="VOSEnableAndDisappear" parent="FreezableComponent" instance=ExtResource("5_u4lo1")]
-position = Vector2(-2, 0)
-scale = Vector2(2.7, 1)
+position = Vector2(0.5, 0)
+scale = Vector2(1.25, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
 [connection signal="setup_finished" from="FreezableComponent/FrozenVisualComponent" to="." method="_on_frozen_visual_component_setup_finished"]
+
+[editable path="FreezableComponent"]

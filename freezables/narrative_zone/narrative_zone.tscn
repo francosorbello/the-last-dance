@@ -40,6 +40,9 @@ start_frozen = true
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_55xxq")]
 visual = NodePath("../..")
 
+[node name="VisibleOnScreenEnabler2D2" type="VisibleOnScreenEnabler2D" parent="FreezableComponent"]
+enable_node_path = NodePath("../FrozenVisualComponent")
+
 [node name="Bonfire" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_r6eb6")

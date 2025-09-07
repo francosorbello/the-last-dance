@@ -10,11 +10,14 @@ extends PathFollow2D
 
 @export var show_path : bool
 @export var line_indicator_scene : PackedScene
+@export var debug : bool 
 
 var has_path : bool
 var _direction_modifier : int = 1
 
 func _ready():
+    if debug:
+        $FreezableComponent.debug = true
     $AnimatedSprite2D.play()
     if get_parent() is Path2D:
         has_path = true

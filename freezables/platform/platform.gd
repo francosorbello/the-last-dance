@@ -31,5 +31,9 @@ func _physics_process(delta):
             _direction_modifier *= -1
         
 func _on_freezable_component_on_freeze_toggle(_is_frozen:bool) -> void:
-    $StaticBody2D/CollisionShape2D.disabled = _is_frozen
-    pass # Replace with function body.
+    # $StaticBody2D/CollisionShape2D.disabled = _is_frozen
+    _disable_deferred.call_deferred(_is_frozen)
+    pass
+    
+func _disable_deferred(value : bool):
+    $StaticBody2D/CollisionShape2D.disabled = value
