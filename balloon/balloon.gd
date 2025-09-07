@@ -7,6 +7,10 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+@export var character_data : CharacterList
+
+@export var empty_portrait : Texture
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -103,6 +107,13 @@ func apply_dialogue_line() -> void:
 
 	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses
+
+	%CharacterPortrait.texture = null
+	# portrait setup
+	if dialogue_line.character.is_empty():
+		%CharacterPortrait.texture = empty_portrait
+	else:
+		$%CharacterPortrait.texture = character_data.get_portrait_for(dialogue_line.character)
 
 	# Show our balloon
 	balloon.show()

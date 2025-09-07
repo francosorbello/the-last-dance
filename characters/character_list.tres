@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://oior5cfrtr47"]
+
+[ext_resource type="Script" uid="uid://c8erkuegts2r0" path="res://characters/character_info.gd" id="1_y8bt6"]
+[ext_resource type="Texture2D" uid="uid://cgidg5kko1rsv" path="res://assets/portraits/portrait.png" id="2_yawqm"]
+[ext_resource type="Script" uid="uid://iba1c3pka2cm" path="res://characters/character_list.gd" id="3_nmwru"]
+[ext_resource type="Texture2D" uid="uid://dq5rieqe4rts8" path="res://assets/portraits/portrait-gray.png" id="3_yawqm"]
+
+[sub_resource type="Gradient" id="Gradient_wmply"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hsfwb"]
+gradient = SubResource("Gradient_wmply")
+
+[sub_resource type="Resource" id="Resource_xsy4d"]
+script = ExtResource("1_y8bt6")
+character_name = "The Lover"
+code_name = "lover"
+portrait = ExtResource("2_yawqm")
+metadata/_custom_type_script = "uid://c8erkuegts2r0"
+
+[sub_resource type="Resource" id="Resource_y8bt6"]
+script = ExtResource("1_y8bt6")
+character_name = "The Steed"
+code_name = "steed"
+portrait = ExtResource("3_yawqm")
+metadata/_custom_type_script = "uid://c8erkuegts2r0"
+
+[resource]
+script = ExtResource("3_nmwru")
+characters = Array[ExtResource("1_y8bt6")]([SubResource("Resource_xsy4d"), SubResource("Resource_y8bt6")])
+blank_portrait = SubResource("GradientTexture1D_hsfwb")
+metadata/_custom_type_script = "uid://iba1c3pka2cm"
