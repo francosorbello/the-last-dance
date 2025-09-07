@@ -3,6 +3,9 @@ class_name OutlineComponent
 
 @export var outline_shader : Shader
 @export var sprite : Sprite2D
+@export_group("Overrides")
+@export var override_color_when_disabled : bool
+@export var override_color_value = Color.WHITE
 
 var material : ShaderMaterial
 
@@ -11,6 +14,8 @@ func _ready() -> void:
     material.shader = outline_shader
     sprite.material = material
     disable_outline()
+    if override_color_when_disabled:
+        sprite.modulate = override_color_value
 
 func enable_outline(color : Color = Color.WHITE):
     material.set_shader_parameter("width",1.0)

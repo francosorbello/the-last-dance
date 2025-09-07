@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dh67s0d2tcbtw"]
+[gd_scene load_steps=43 format=4 uid="uid://dh67s0d2tcbtw"]
 
 [ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="1_f3jvc"]
 [ext_resource type="Texture2D" uid="uid://dydirkukvf4np" path="res://assets/Layer_0009_2.png" id="1_j8rpn"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://b3tenrcjl2ylt" path="res://freezables/damage_saw/damage_saw.tscn" id="12_blpaa"]
 [ext_resource type="PackedScene" uid="uid://bjh8cl7oqxdl5" path="res://freezables/platform/platform_small.tscn" id="13_40tgm"]
 [ext_resource type="PackedScene" uid="uid://cjr6do5j2w2li" path="res://freezable_jump_pad.tscn" id="14_tgsvg"]
+[ext_resource type="PackedScene" uid="uid://cmxcam2ye664y" path="res://interactables/memory_interactable.tscn" id="17_ft4pq"]
+[ext_resource type="Texture2D" uid="uid://drmt7qn3jutib" path="res://assets/GraySamuraiStand.png" id="18_8o3pa"]
+[ext_resource type="Resource" uid="uid://b7rymjrwkk084" path="res://dialogues/memory_red_samurai.dialogue" id="19_paf1q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8880a"]
 size = Vector2(20, 58)
@@ -218,7 +221,6 @@ position = Vector2(0, 19)
 
 [node name="Checkpoint6" parent="CheckpointManager" instance=ExtResource("6_8880a")]
 position = Vector2(1587, -117)
-initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint6"]
 position = Vector2(8.82214, -14.3919)
@@ -257,6 +259,7 @@ position = Vector2(8, 0)
 
 [node name="Checkpoint10" parent="CheckpointManager" instance=ExtResource("6_8880a")]
 position = Vector2(3216, -320)
+initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint10"]
 position = Vector2(8.82214, -14.3919)
@@ -493,7 +496,7 @@ curve = SubResource("Curve2D_8o3pa")
 
 [node name="Platform" parent="RoomStuff/Room13/Path2D3" instance=ExtResource("13_40tgm")]
 position = Vector2(171.099, 40)
-progress = 99.798
+progress = 99.7979
 speed = 30.0
 initial_progress_ratio = 0.9
 show_path = true
@@ -584,3 +587,10 @@ position = Vector2(3672, -88)
 
 [node name="NarrativeZone" parent="RoomStuff/Room18" instance=ExtResource("10_pi6y8")]
 position = Vector2(0, 21)
+
+[node name="MemoryInteractable" parent="RoomStuff/Room18" instance=ExtResource("17_ft4pq")]
+position = Vector2(128, 32)
+sprite = ExtResource("18_8o3pa")
+dialogue = ExtResource("19_paf1q")
+override_scale = true
+override_scale_value = Vector2(0.5, 0.5)

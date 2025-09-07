@@ -32,6 +32,8 @@ func _unhandled_input(event):
 		$StateMachine.transition_to("JumpingState")
 	if event.is_action_pressed("freeze"):
 		do_freeze()
+	elif event.is_action_pressed("interact"):
+		do_interact()
 
 func _physics_process(_delta: float) -> void:
 	if velocity.x != 0:
@@ -51,6 +53,9 @@ func do_freeze():
 
 func do_jump():
 	$StateMachine.transition_to("JumpingState")
+
+func do_interact():
+	$BetterInteractableManager.use_interactable()
 
 func can_be_attached() -> bool:
 	return true

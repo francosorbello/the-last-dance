@@ -12,6 +12,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_hsfwb"]
 gradient = SubResource("Gradient_wmply")
+width = 1
 
 [sub_resource type="Resource" id="Resource_xsy4d"]
 script = ExtResource("1_y8bt6")

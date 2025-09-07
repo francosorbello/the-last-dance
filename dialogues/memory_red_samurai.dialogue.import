@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b7rymjrwkk084"
+path="res://.godot/imported/memory_red_samurai.dialogue-b97a56f15056e4e27088c005a0a63b72.tres"
+
+[deps]
+
+source_file="res://dialogues/memory_red_samurai.dialogue"
+dest_files=["res://.godot/imported/memory_red_samurai.dialogue-b97a56f15056e4e27088c005a0a63b72.tres"]
+
+[params]
+
+defaults=true

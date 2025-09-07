@@ -16,3 +16,5 @@ debug_name = "Gun"
 
 [node name="OutlineComponent" parent="BetterInteractableComponent" node_paths=PackedStringArray("sprite") instance=ExtResource("3_t7jv8")]
 sprite = NodePath("../../Sprite2D")
+override_color_when_disabled = true
+override_color_value = Color(1, 1, 1, 0.509804)

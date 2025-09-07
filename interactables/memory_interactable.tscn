@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmxcam2ye664y"]
+
+[ext_resource type="Script" uid="uid://bx3pbk2trpmg2" path="res://interactables/memory_interactable.gd" id="1_3m7h8"]
+[ext_resource type="PackedScene" uid="uid://dgks666k0klxv" path="res://interactables/interactable_component/better_interactable_component.tscn" id="1_qry80"]
+[ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="2_p0q5v"]
+[ext_resource type="PackedScene" uid="uid://djmabtdad3j8e" path="res://utils/floating_sprite.tscn" id="4_ki4n1"]
+[ext_resource type="FontFile" uid="uid://dqplyhev5mxut" path="res://assets/fonts/monogram-extended.ttf" id="4_m2gw6"]
+[ext_resource type="AudioStream" uid="uid://7fx8w1qgx4uo" path="res://sounds/Retro Magic 34.mp3" id="5_l2vnd"]
+
+[node name="MemoryInteractable" type="Node2D"]
+script = ExtResource("1_3m7h8")
+
+[node name="BetterInteractableComponent" parent="." instance=ExtResource("1_qry80")]
+
+[node name="OutlineComponent" parent="BetterInteractableComponent" node_paths=PackedStringArray("sprite") instance=ExtResource("2_p0q5v")]
+sprite = NodePath("../../FloatingSprite")
+
+[node name="Label" type="Label" parent="BetterInteractableComponent"]
+offset_left = -20.0
+offset_top = -28.0
+offset_right = 20.0
+offset_bottom = -5.0
+theme_override_fonts/font = ExtResource("4_m2gw6")
+text = "[Z]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloatingSprite" parent="." instance=ExtResource("4_ki4n1")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_l2vnd")
+volume_db = -5.0
+
+[connection signal="on_interact" from="BetterInteractableComponent" to="." method="_on_better_interactable_component_on_interact"]

@@ -20,10 +20,11 @@ config/icon="res://icon.svg"
 GlobalEventSystem="*res://addons/ftr_tools/global_event_system/global_event_system.gd"
 SfxSoundManager="*res://sounds/sound_manager/sfx_sound_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GlobalData="*res://global_data/global_data.tscn"
 
 [dialogue_manager]
 
-runtime/balloon_path="res://balloon/balloon.tscn"
+runtime/balloon_path="uid://c1gmsep0se4gn"
 
 [display]
 
@@ -59,10 +60,15 @@ freeze={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"location":0,"echo":false,"script":null)
 ]
 }
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://tests/test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://tests/test.dialogue", "res://dialogues/memory_red_samurai.dialogue")
 
 [layer_names]
 

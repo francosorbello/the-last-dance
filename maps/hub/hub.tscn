@@ -19,7 +19,7 @@ position = Vector2(-10, 30)
 
 [node name="Player" parent="." instance=ExtResource("1_tn8io")]
 position = Vector2(200, 29)
+flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(71, -28)
-zoom = Vector2(1.5, 1.5)
+position = Vector2(105, -5)
