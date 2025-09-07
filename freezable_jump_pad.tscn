@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjr6do5j2w2li"]
+
+[ext_resource type="Texture2D" uid="uid://cb5y1ft22kyj4" path="res://assets/jump_pad_small_freezable.png" id="1_32cld"]
+[ext_resource type="PackedScene" uid="uid://bauh2b7kq4sl5" path="res://freezables/jump_pad/small_jump_pad.tscn" id="1_idrk5"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="2_bk1vh"]
+[ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="3_x5ml6"]
+[ext_resource type="PackedScene" uid="uid://xa8ntkiwaptg" path="res://utils/vos_enable_and_disappear.tscn" id="4_x5ml6"]
+
+[sub_resource type="GDScript" id="GDScript_x5ml6"]
+script/source = "extends Node2D
+
+@export var override_sprite : Texture2D
+
+func _ready() -> void:
+	$JumpPad/AnimatableBody2D/Sprite2D.texture = override_sprite
+"
+
+[node name="FreezableJumpPad" type="Node2D"]
+script = SubResource("GDScript_x5ml6")
+override_sprite = ExtResource("1_32cld")
+
+[node name="JumpPad" parent="." instance=ExtResource("1_idrk5")]
+use_parent_material = true
+
+[node name="Sprite2D" parent="JumpPad/AnimatableBody2D" index="1"]
+use_parent_material = false
+
+[node name="FreezableComponent" parent="JumpPad" instance=ExtResource("2_bk1vh")]
+only_active_when_visible = true
+
+[node name="FrozenVisualComponent" parent="JumpPad/FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_x5ml6")]
+visual = NodePath("../../AnimatableBody2D/Sprite2D")
+override_params = Dictionary[String, Variant]({
+"effect_intensity": 0.7
+})
+
+[node name="VOSEnableAndDisappear" parent="JumpPad/FreezableComponent" instance=ExtResource("4_x5ml6")]
+position = Vector2(0.999999, 0)
+scale = Vector2(2, 1)
+enable_node_path = NodePath("../..")
+
+[editable path="JumpPad"]

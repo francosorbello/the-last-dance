@@ -23,7 +23,7 @@ func _ready():
 		_initial_pos = global_position
 	
 	await get_tree().create_timer(0.1).timeout
-	# global_position = _get_respawn_point()	
+	global_position = _get_respawn_point()	
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 

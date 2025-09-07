@@ -2,6 +2,7 @@ extends Node
 
 @export var material : ShaderMaterial
 @export var visual : CanvasItem
+@export var override_params : Dictionary[String,Variant]
 
 var _material_instance : ShaderMaterial
 
@@ -15,9 +16,14 @@ func _ready() -> void:
 		visual.material = _material_instance
 	else:
 		_material_instance = visual.material
+	_set_overriden_params()
 	disable_visual()
 	setup_finished.emit()
 	is_setup = true
+
+func _set_overriden_params():
+	for key in override_params.keys():
+		override_param(key,override_params[key])
 
 func enable_visual():
 	_material_instance.set_shader_parameter("enabled",true)
