@@ -207,7 +207,7 @@ curve = SubResource("Curve2D_blpaa")
 
 [node name="Platform2" parent="RoomStuff/Room6/Path2D3" instance=ExtResource("8_xeaqt")]
 position = Vector2(16, 80)
-progress = 208.0
+progress = 200.0
 initial_progress_ratio = 1.0
 show_path = true
 

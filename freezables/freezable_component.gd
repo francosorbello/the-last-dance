@@ -23,7 +23,7 @@ func _ready():
 func _on_visual_setup_finished():
 	if start_frozen:
 		_can_be_activated = true
-		# toggle_freeze()
+		toggle_freeze()
 		_can_be_activated = !only_active_when_visible
 
 

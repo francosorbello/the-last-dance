@@ -33,8 +33,9 @@ only_active_when_visible = true
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("4_55h73")]
 visual = NodePath("../../StaticBody2D/Sprite2D")
 
-[node name="VOSEnableAndDisappear" parent="." instance=ExtResource("6_lvi6b")]
-position = Vector2(-0.500002, 2.38419e-07)
-scale = Vector2(3.25, 1.6)
+[node name="VOSEnableAndDisappear" parent="FreezableComponent" instance=ExtResource("6_lvi6b")]
+position = Vector2(-1.5, 0)
+scale = Vector2(3.25, 1)
+enable_node_path = NodePath("../..")
 
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]

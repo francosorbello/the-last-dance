@@ -50,7 +50,7 @@ script = ExtResource("1_mv1vq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wrblr")
-frame_progress = 0.511849
+frame_progress = 0.938858
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -63,7 +63,9 @@ only_active_when_visible = true
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("4_e3p66")]
 visual = NodePath("../../AnimatedSprite2D")
 
-[node name="VOSEnableAndDisappear" parent="." instance=ExtResource("5_u4lo1")]
+[node name="VOSEnableAndDisappear" parent="FreezableComponent" instance=ExtResource("5_u4lo1")]
+position = Vector2(-2, 0)
+scale = Vector2(2.7, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
