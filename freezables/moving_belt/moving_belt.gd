@@ -7,7 +7,6 @@ extends Path2D
 
 var attached_entity : Node2D
 var prev_attached_entity : Node2D
-var prev_attached_parent : Node
 
 var moving_entity : bool = false
 
@@ -43,19 +42,14 @@ func create_belt():
 	$Line2D.points = polygon
 	if Engine.is_editor_hint():
 		return
-	_setup_shader_direction()
+	$FreezableComponent/FrozenVisualComponent.setup_finished.connect(_setup_shader_direction)
 
 func _setup_shader_direction():
 	# wait for visual component to be ready (ie: duplicate the material if needed)
-	await get_tree().process_frame
-	await get_tree().create_timer(0.2).timeout
-	
-	var mat : ShaderMaterial = $FreezableComponent/FrozenVisualComponent._material_instance
 	
 	var dir = sign(direction.x) * 1
-	
-	mat.set_shader_parameter("speedx",dir)
-	mat.set_shader_parameter("fbm_speed",dir*2)
+	$FreezableComponent/FrozenVisualComponent.override_param("speedx",dir)
+	# $FreezableComponent/FrozenVisualComponent.override_param("fbm_speed",dir*2)
 
 func _physics_process(delta):
 	if moving_entity:
@@ -75,27 +69,25 @@ func attach(entity : Node2D):
 		return
 	
 	attached_entity = entity
-	prev_attached_parent = entity.get_parent()
 	
 	# entity.get_parent().remove_child(entity)
 	
 	var distance = abs(entity.global_position.x - $AnchorPoint.global_position.x)
 	$AnchorPoint.progress += distance 
-	print($AnchorPoint.progress_ratio)
 
 	# $AnchorPoint.add_child(entity)
 	entity.position = Vector2.ZERO
 	
 	moving_entity = true
 	
-func detach():
+func detach(force_detachment : bool = false):
 	$DisabledTimer.start()
 	if attached_entity:
 		# $AnchorPoint.remove_child(attached_entity)
 
 		# prev_attached_parent.add_child(attached_entity)
-		attached_entity.global_position = $AnchorPoint.global_position
-		attached_entity.detach_from_belt()
+		# attached_entity.global_position = $AnchorPoint.global_position
+		attached_entity.detach_from_belt($AnchorPoint.progress_ratio > 0.9 and not force_detachment)
 
 		moving_entity = false
 
@@ -103,7 +95,6 @@ func detach():
 
 	prev_attached_entity = attached_entity
 	attached_entity = null
-	prev_attached_parent = null
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if $DisabledTimer.time_left > 0:
@@ -119,7 +110,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 
 	if body.has_method("can_be_attached") and body.can_be_attached():
 		attach.call_deferred(body)
-		body.attach_to_belt.call_deferred($AnchorPoint)
+		body.attach_to_belt.call_deferred($AnchorPoint, self)
 	# 	attach(body)
 
 

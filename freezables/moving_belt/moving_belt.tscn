@@ -58,6 +58,7 @@ default_color = Color(0.716296, 0.716296, 0.716296, 1)
 antialiased = true
 
 [node name="DisabledTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="FreezableComponent" parent="." instance=ExtResource("3_q3xvv")]

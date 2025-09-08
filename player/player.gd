@@ -16,6 +16,7 @@ var checkpoint_manager : Node
 
 var _initial_pos : Vector2
 var _can_be_attached : bool = true
+var _attached_belt : Node2D
 
 func _ready():
 	$Sprite2D.flip_h = flip_h
@@ -61,12 +62,17 @@ func do_interact():
 func can_be_attached() -> bool:
 	return _can_be_attached
 
-func attach_to_belt(anchor_point : Node2D):
+func attach_to_belt(anchor_point : Node2D, belt : Node2D):
+	_attached_belt = belt
 	$StateMachine.send_message_to("BeltingState",{"anchor_point" : anchor_point})
 	$StateMachine.transition_to("BeltingState")
 
-func detach_from_belt():
-	$StateMachine.transition_to("FallingState")
+func detach_from_belt(exit_with_jump : bool):
+	if exit_with_jump:
+		$StateMachine.transition_to("ExitBeltState")
+	else:
+		$StateMachine.transition_to("FallingState")
+	_attached_belt = null
 
 #region Animations
 func play_idle_anim():
@@ -87,6 +93,9 @@ func die():
 
 func _on_hurt_area_damage_taken() -> void:
 	_can_be_attached = false
+	if _attached_belt:
+		_attached_belt.detach(true)
+
 	$StateMachine.transition_to("IdleState")
 	global_position = _get_respawn_point()
 	$DeadAnimPlayer.play_anim($Sprite2D)

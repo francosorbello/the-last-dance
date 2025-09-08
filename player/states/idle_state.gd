@@ -2,6 +2,7 @@ extends PlayerState
 
 func enter():
     player.play_idle_anim()
+    player.velocity = Vector2.ZERO
 
 ## Update the state on the physics stage.
 func physics_update(delta: float):

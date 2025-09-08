@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cp76x3ot6suf2"
+path="res://.godot/imported/memory_gun.dialogue-2fe82990bb192a2ffb870d0238829377.tres"
+
+[deps]
+
+source_file="res://dialogues/memory_gun.dialogue"
+dest_files=["res://.godot/imported/memory_gun.dialogue-2fe82990bb192a2ffb870d0238829377.tres"]
+
+[params]
+
+defaults=true

@@ -15,7 +15,8 @@ func _ready() -> void:
 		_material_instance = material.duplicate()
 		visual.material = _material_instance
 	else:
-		_material_instance = visual.material
+		_material_instance = visual.material.duplicate()
+		visual.material = _material_instance
 	_set_overriden_params()
 	disable_visual()
 	setup_finished.emit()
@@ -33,3 +34,4 @@ func disable_visual():
 
 func override_param(param_name : String, value : Variant):
 	_material_instance.set_shader_parameter(param_name,value)
+	# visual.material = _material_instance
