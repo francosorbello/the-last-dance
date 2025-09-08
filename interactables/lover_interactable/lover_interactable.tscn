@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc15intbseh7"]
+[gd_scene load_steps=5 format=3 uid="uid://bc15intbseh7"]
 
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_7uj83"]
 [ext_resource type="PackedScene" uid="uid://dgks666k0klxv" path="res://interactables/interactable_component/better_interactable_component.tscn" id="2_y5t64"]
 [ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="3_enmka"]
 
+[sub_resource type="GDScript" id="GDScript_enmka"]
+script/source = "extends Node2D
+
+
+func _on_better_interactable_component_on_interact() -> void:
+	GlobalData.switch_to_scene(\"ending_good\")
+	pass # Replace with function body.
+"
+
 [node name="LoverInteractable" type="Node2D"]
+script = SubResource("GDScript_enmka")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7uj83")
@@ -19,3 +29,5 @@ is_interactable = false
 sprite = NodePath("../../Sprite2D")
 override_color_when_disabled = true
 override_color_value = Color(1, 1, 1, 0.556863)
+
+[connection signal="on_interact" from="BetterInteractableComponent" to="." method="_on_better_interactable_component_on_interact"]

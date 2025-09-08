@@ -7,4 +7,6 @@ func _ready():
     DialogueManager.show_dialogue_balloon(starting_dialogue,"start",[self])
 
 func play_shot_anim():
+    $AudioStreamPlayer.play()
+    await $AudioStreamPlayer.finished
     GlobalData.switch_to_scene("hub")

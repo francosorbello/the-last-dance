@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmy4t1b5y4iao"]
+[gd_scene load_steps=6 format=3 uid="uid://bmy4t1b5y4iao"]
 
 [ext_resource type="Script" uid="uid://cgq0ke5ykg7of" path="res://maps/ending_good.gd" id="1_lce18"]
 [ext_resource type="Resource" uid="uid://bktsjseobo8gx" path="res://dialogues/ending_good.dialogue" id="2_acsg6"]
 [ext_resource type="Texture2D" uid="uid://domwop5hrsfkf" path="res://condor.png" id="2_et607"]
 [ext_resource type="AudioStream" uid="uid://c24c47ox0prns" path="res://sounds/pistol.mp3" id="2_sbsm4"]
+[ext_resource type="AudioStream" uid="uid://bv0sdejcpveju" path="res://sounds/music/Rest in Peace.mp3" id="5_ra8qk"]
 
 [node name="EndingGood" type="Node"]
 script = ExtResource("1_lce18")
@@ -45,3 +46,6 @@ expand_mode = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_sbsm4")
 volume_db = -10.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ra8qk")

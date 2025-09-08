@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://camdghmr4qjx6"]
+[gd_scene load_steps=14 format=3 uid="uid://camdghmr4qjx6"]
 
 [ext_resource type="Script" uid="uid://de6wsta0hibih" path="res://freezables/narrative_zone/narrative_zone.gd" id="1_5wg0u"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="1_j0hb7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://2jbx7822hx58" path="res://assets/bonfire/Bonfire_4.png" id="6_55xxq"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="7_qgott"]
 [ext_resource type="Texture2D" uid="uid://drmt7qn3jutib" path="res://assets/GraySamuraiStand.png" id="8_yomxi"]
+[ext_resource type="FontFile" uid="uid://dqplyhev5mxut" path="res://assets/fonts/monogram-extended.ttf" id="11_tl1ga"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6eb6"]
 animations = [{
@@ -30,6 +31,9 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_einy1"]
+font = ExtResource("11_tl1ga")
 
 [node name="NarrativeZone" type="Node2D"]
 script = ExtResource("1_5wg0u")
@@ -59,6 +63,16 @@ region_rect = Rect2(24, 21, 18, 27)
 use_parent_material = true
 position = Vector2(-20, 5)
 texture = ExtResource("8_yomxi")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -28.0
+offset_right = 21.0
+offset_bottom = -5.0
+text = "[C]"
+label_settings = SubResource("LabelSettings_einy1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
 [connection signal="on_restart" from="FreezableComponent" to="." method="_on_freezable_component_on_restart"]

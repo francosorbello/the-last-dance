@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://cpiyj1su5sisq"]
+[gd_scene load_steps=7 format=4 uid="uid://cpiyj1su5sisq"]
 
 [ext_resource type="Material" uid="uid://ddpfgbrw3m0d8" path="res://black_tiles_shader.tres" id="1_d0uat"]
 [ext_resource type="Texture2D" uid="uid://domwop5hrsfkf" path="res://condor.png" id="1_evg2q"]
+[ext_resource type="Script" uid="uid://pu1nq5q0qek4" path="res://maps/menu.gd" id="1_iilwo"]
 [ext_resource type="TileSet" uid="uid://bouie4fede3je" path="res://maps/prettier_tiles.tres" id="2_jqiu4"]
 [ext_resource type="FontFile" uid="uid://dqplyhev5mxut" path="res://assets/fonts/monogram-extended.ttf" id="2_swcae"]
+[ext_resource type="AudioStream" uid="uid://dwxhudd0685bn" path="res://sounds/music/WAV_You_Want_Me.mp3" id="5_jqiu4"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iilwo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -53,8 +56,15 @@ theme_override_fonts/font = ExtResource("2_swcae")
 text = "COMENZAR"
 alignment = 0
 
-[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Salir" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_swcae")
 text = "SALIR"
 alignment = 0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jqiu4")
+autoplay = true
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Salir" to="." method="_on_salir_pressed"]

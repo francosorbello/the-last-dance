@@ -36,3 +36,7 @@ func secret_ending():
 
 func starting_cutscene():
     pass
+
+func _unhandled_input(event):
+    if event.is_action_pressed("exit"):
+        get_tree().quit()

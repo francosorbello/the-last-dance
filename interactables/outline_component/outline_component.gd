@@ -14,12 +14,14 @@ func _ready() -> void:
     material.shader = outline_shader
     sprite.material = material
     disable_outline()
-    if override_color_when_disabled:
-        sprite.modulate = override_color_value
 
 func enable_outline(color : Color = Color.WHITE):
     material.set_shader_parameter("width",1.0)
     material.set_shader_parameter("color",color)
+    if override_color_when_disabled:
+        sprite.modulate = Color.WHITE
 
 func disable_outline():
+    if override_color_when_disabled:
+        sprite.modulate = override_color_value
     material.set_shader_parameter("width",0.0)

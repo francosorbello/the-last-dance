@@ -7,8 +7,8 @@ func _ready():
     visible = false
 
 func _on_hover():
-    visible = true
-    pass
+    if get_parent().is_interactable:
+        visible = true
 
 func _on_leave():
     visible = false

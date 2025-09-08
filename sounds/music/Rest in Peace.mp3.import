@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bv0sdejcpveju"
+path="res://.godot/imported/Rest in Peace.mp3-d8fad4b82e5f43f53c8807e13f9c03ba.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/Rest in Peace.mp3"
+dest_files=["res://.godot/imported/Rest in Peace.mp3-d8fad4b82e5f43f53c8807e13f9c03ba.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5vndu0gx8x50"]
+[gd_scene load_steps=8 format=3 uid="uid://b5vndu0gx8x50"]
 
 [ext_resource type="Script" uid="uid://dmio5vd3edk55" path="res://global_data/global_data.gd" id="1_qcbv6"]
 [ext_resource type="PackedScene" uid="uid://qt5jrce5c5v1" path="res://maps/hub/hub.tscn" id="2_ijfwv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpiyj1su5sisq" path="res://maps/menu.tscn" id="4_v0vxn"]
 [ext_resource type="PackedScene" uid="uid://bhsp2vq0uluir" path="res://maps/map2/map2.tscn" id="5_rftku"]
 [ext_resource type="PackedScene" uid="uid://bmy4t1b5y4iao" path="res://maps/ending_good.tscn" id="6_dh0f7"]
+[ext_resource type="PackedScene" uid="uid://ikf0npqpr4n0" path="res://maps/starting_scene.tscn" id="7_yflq4"]
 
 [node name="GlobalData" type="Node"]
 script = ExtResource("1_qcbv6")
@@ -14,7 +15,8 @@ important_scenes = Dictionary[String, PackedScene]({
 "hub": ExtResource("2_ijfwv"),
 "map1": ExtResource("3_s64e0"),
 "map2": ExtResource("5_rftku"),
-"menu": ExtResource("4_v0vxn")
+"menu": ExtResource("4_v0vxn"),
+"starting_scene": ExtResource("7_yflq4")
 })
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

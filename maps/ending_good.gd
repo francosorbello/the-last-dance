@@ -6,6 +6,7 @@ func _ready() -> void:
     $CanvasLayer/Control/TextureRect.visible = false
     $AudioStreamPlayer.play()
     await $AudioStreamPlayer.finished
+    $AudioStreamPlayer2.play()
     DialogueManager.show_dialogue_balloon(dialogue, "start")
     DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 

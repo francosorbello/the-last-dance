@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://bhsp2vq0uluir"]
+[gd_scene load_steps=37 format=4 uid="uid://bhsp2vq0uluir"]
 
 [ext_resource type="Texture2D" uid="uid://c62bspqg4kcbj" path="res://assets/sky.png" id="1_1qkwc"]
 [ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="1_qqv0e"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://cp76x3ot6suf2" path="res://dialogues/memory_gun.dialogue" id="10_tgswf"]
 [ext_resource type="Resource" uid="uid://bh2tf1lpah28r" path="res://dialogues/map2room9.dialogue" id="11_gjc4w"]
 [ext_resource type="Resource" uid="uid://b2n38cyakwew7" path="res://dialogues/map2room5.dialogue" id="17_xougk"]
+[ext_resource type="AudioStream" uid="uid://bd6skmc42qerx" path="res://sounds/music/Hazelight.mp3" id="20_q3c7a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtq80"]
 size = Vector2(35, 86)
@@ -150,6 +151,7 @@ follow_smoothing = 0.3
 
 [node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("6_un36w")]
 position = Vector2(58, 110)
+initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
 position = Vector2(-1.5, -23)
@@ -197,7 +199,6 @@ shape = SubResource("RectangleShape2D_p2y3p")
 
 [node name="Checkpoint6" parent="CheckpointManager" instance=ExtResource("6_un36w")]
 position = Vector2(2536, -48)
-initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint6"]
 position = Vector2(-1.5, -6)
@@ -336,3 +337,7 @@ position = Vector2(472, 88)
 
 [node name="MovingBelt" parent="Rooms/Room1" instance=ExtResource("7_qtq80")]
 curve = SubResource("Curve2D_qtq80")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_q3c7a")
+autoplay = true

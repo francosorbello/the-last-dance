@@ -10,5 +10,6 @@ func _ready() -> void:
     
     if GlobalData.collectables.has("gun"):
         $GunInteractable/BetterInteractableComponent.is_interactable = false
+        $LoverInteractable.visible = true
         $LoverInteractable/BetterInteractableComponent.is_interactable = true
         
