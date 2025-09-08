@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=4 uid="uid://bhsp2vq0uluir"]
+
+[ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="1_qqv0e"]
+[ext_resource type="TileSet" uid="uid://bouie4fede3je" path="res://maps/prettier_tiles.tres" id="2_4k56d"]
+[ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="3_m15uv"]
+[ext_resource type="Script" uid="uid://tm06w6rk3m3g" path="res://maps/room_camera.gd" id="4_ys3d7"]
+[ext_resource type="PackedScene" uid="uid://ddheshicik6w8" path="res://checkpoints/checkpoint_manager.tscn" id="5_qkxbm"]
+[ext_resource type="PackedScene" uid="uid://bnbucya5fuji0" path="res://checkpoints/checkpoint.tscn" id="6_un36w"]
+[ext_resource type="PackedScene" uid="uid://dwhodtrhy5nid" path="res://freezables/moving_belt/moving_belt.tscn" id="7_qtq80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtq80"]
+size = Vector2(35, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qpfg"]
+size = Vector2(35, 52)
+
+[sub_resource type="Curve2D" id="Curve2D_qtq80"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -72, 8, 0, 0, 0, 0, 56, 8)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_8qpfg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 88, 0, 0, 0, 0, 0, 48, 0)
+}
+point_count = 2
+
+[node name="ContinuousGameMap" type="Node"]
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="RoomLayoutTiles" type="TileMapLayer" parent="Tilemaps"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
+tile_set = ExtResource("1_qqv0e")
+
+[node name="FloorAndCeilTiles" type="TileMapLayer" parent="Tilemaps"]
+tile_map_data = PackedByteArray("AAAAAAgAAAABAAEAAAAAAAkAAAABAAEAAAAAAAoAAAABAAEAAAABAAgAAAABAAEAAAABAAkAAAABAAEAAAABAAoAAAABAAEAAAACAAgAAAABAAEAAAACAAkAAAABAAEAAAACAAoAAAABAAEAAAADAAgAAAABAAEAAAADAAkAAAABAAEAAAADAAoAAAABAAEAAAAEAAgAAAABAAEAAAAEAAkAAAABAAEAAAAEAAoAAAABAAEAAAAFAAgAAAABAAEAAAAFAAkAAAABAAEAAAAFAAoAAAABAAEAAAAGAAgAAAABAAEAAAAGAAkAAAABAAEAAAAGAAoAAAABAAEAAAAHAAgAAAABAAEAAAAHAAkAAAABAAEAAAAHAAoAAAABAAEAAAAIAAgAAAABAAEAAAAIAAkAAAABAAEAAAAIAAoAAAABAAEAAAAJAAgAAAABAAEAAAAJAAkAAAABAAEAAAAJAAoAAAABAAEAAAAKAAgAAAABAAEAAAAKAAkAAAABAAEAAAAKAAoAAAABAAEAAAALAAgAAAABAAEAAAALAAkAAAABAAEAAAALAAoAAAABAAEAAAAMAAgAAAABAAEAAAAMAAkAAAABAAEAAAAMAAoAAAABAAEAAAANAAgAAAABAAEAAAANAAkAAAABAAEAAAANAAoAAAABAAEAAAAOAAgAAAABAAEAAAAOAAkAAAABAAEAAAAOAAoAAAABAAEAAAAPAAgAAAABAAEAAAAPAAkAAAABAAEAAAAPAAoAAAABAAEAAAAQAAgAAAABAAEAAAAQAAkAAAABAAEAAAAQAAoAAAABAAEAAAARAAgAAAABAAEAAAARAAkAAAABAAEAAAARAAoAAAABAAEAAAASAAgAAAABAAEAAAASAAkAAAABAAEAAAASAAoAAAABAAEAAAATAAgAAAABAAEAAAATAAkAAAABAAEAAAATAAoAAAABAAEAAAAUAAgAAAABAAEAAAAUAAkAAAABAAEAAAAUAAoAAAABAAEAAAAVAAgAAAABAAEAAAAVAAkAAAABAAEAAAAVAAoAAAABAAEAAAAWAAgAAAABAAEAAAAWAAkAAAABAAEAAAAWAAoAAAABAAEAAAAXAAgAAAABAAEAAAAXAAkAAAABAAEAAAAXAAoAAAABAAEAAAAYAAgAAAABAAEAAAAYAAkAAAABAAEAAAAYAAoAAAABAAEAAAAZAAgAAAABAAEAAAAZAAkAAAABAAEAAAAZAAoAAAABAAEAAAAgAAgAAAABAAEAAAAgAAkAAAABAAEAAAAgAAoAAAABAAEAAAAhAAgAAAABAAEAAAAhAAkAAAABAAEAAAAhAAoAAAABAAEAAAAiAAgAAAABAAEAAAAiAAkAAAABAAEAAAAiAAoAAAABAAEAAAAjAAgAAAABAAEAAAAjAAkAAAABAAEAAAAjAAoAAAABAAEAAAAkAAgAAAABAAEAAAAkAAkAAAABAAEAAAAkAAoAAAABAAEAAAAlAAgAAAABAAEAAAAlAAkAAAABAAEAAAAlAAoAAAABAAEAAAAmAAgAAAABAAEAAAAmAAkAAAABAAEAAAAmAAoAAAABAAEAAAAnAAgAAAABAAEAAAAnAAkAAAABAAEAAAAnAAoAAAABAAEAAAAoAAgAAAABAAEAAAAoAAkAAAABAAEAAAAoAAoAAAABAAEAAAApAAgAAAABAAEAAAApAAkAAAABAAEAAAApAAoAAAABAAEAAAAqAAgAAAABAAEAAAAqAAkAAAABAAEAAAAqAAoAAAABAAEAAAArAAgAAAABAAEAAAArAAkAAAABAAEAAAArAAoAAAABAAEAAAAsAAgAAAABAAEAAAAsAAkAAAABAAEAAAAsAAoAAAABAAEAAAAtAAgAAAABAAEAAAAtAAkAAAABAAEAAAAtAAoAAAABAAEAAAAuAAgAAAABAAEAAAAuAAkAAAABAAEAAAAuAAoAAAABAAEAAAAvAAgAAAABAAEAAAAvAAkAAAABAAEAAAAvAAoAAAABAAEAAAAwAAgAAAABAAEAAAAwAAkAAAABAAEAAAAwAAoAAAABAAEAAAAxAAgAAAABAAEAAAAxAAkAAAABAAEAAAAxAAoAAAABAAEAAAAoAAQAAAABAAEAAAApAAQAAAABAAEAAAAqAAQAAAABAAEAAAArAAQAAAABAAEAAAAsAAQAAAABAAEAAAAtAAQAAAABAAEAAAAuAAQAAAABAAEAAAAvAAQAAAABAAEAAAAwAAQAAAABAAEAAAAxAAQAAAABAAEAAAA1AAgAAAABAAEAAAA1AAkAAAABAAEAAAA1AAoAAAABAAEAAAA2AAgAAAABAAEAAAA2AAkAAAABAAEAAAA2AAoAAAABAAEAAAA1AAQAAAABAAEAAAA1AAUAAAABAAEAAAA1AAYAAAABAAEAAAA1AAcAAAABAAEAAAA2AAQAAAABAAEAAAA2AAUAAAABAAEAAAA2AAYAAAABAAEAAAA2AAcAAAABAAEAAAAyAAQAAAABAAEAAAAzAAQAAAABAAEAAAA0AAQAAAABAAEAAAA=")
+tile_set = ExtResource("2_4k56d")
+
+[node name="DamageTiles" type="TileMapLayer" parent="Tilemaps"]
+tile_map_data = PackedByteArray("AAAaAAoAAAAEAAEAAAAbAAoAAAAEAAEAAAAcAAoAAAAEAAEAAAAdAAoAAAAEAAEAAAAeAAoAAAAEAAEAAAAfAAoAAAAEAAEAAAAxAAkAAAAEAAEAAAAxAAoAAAAEAAEAAAA=")
+tile_set = ExtResource("2_4k56d")
+
+[node name="DetailTiles" type="TileMapLayer" parent="Tilemaps"]
+
+[node name="Player" parent="." instance=ExtResource("3_m15uv")]
+z_index = 1
+position = Vector2(170, 102)
+
+[node name="RoomCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target_to_follow")]
+position = Vector2(160, 90)
+position_smoothing_speed = 10.0
+script = ExtResource("4_ys3d7")
+target_to_follow = NodePath("../Player")
+follow_smoothing = 0.3
+
+[node name="CheckpointManager" parent="." instance=ExtResource("5_qkxbm")]
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("6_un36w")]
+position = Vector2(58, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(-1.5, -23)
+shape = SubResource("RectangleShape2D_qtq80")
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(-2, -6)
+
+[node name="Checkpoint2" parent="CheckpointManager" instance=ExtResource("6_un36w")]
+position = Vector2(776, 112)
+initial = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint2"]
+position = Vector2(-1.5, -6)
+shape = SubResource("RectangleShape2D_8qpfg")
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointManager/Checkpoint2"]
+position = Vector2(-2, -6)
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Room0" type="Node2D" parent="Rooms"]
+
+[node name="Room1" type="Node2D" parent="Rooms"]
+position = Vector2(472, 88)
+
+[node name="MovingBelt" parent="Rooms/Room1" instance=ExtResource("7_qtq80")]
+curve = SubResource("Curve2D_qtq80")
+move_speed = 50.0
+
+[node name="Room2" type="Node2D" parent="Rooms"]
+position = Vector2(703.727, 105.345)
+
+[node name="MovingBelt" parent="Rooms/Room2" instance=ExtResource("7_qtq80")]
+position = Vector2(51.2726, 52.655)
+curve = SubResource("Curve2D_8qpfg")

@@ -55,7 +55,7 @@ func _setup_shader_direction():
 	var dir = sign(direction.x) * 1
 	
 	mat.set_shader_parameter("speedx",dir)
-	mat.set_shader_parameter("fbm_speed",-dir*2)
+	mat.set_shader_parameter("fbm_speed",dir*2)
 
 func _physics_process(delta):
 	if moving_entity:
@@ -77,12 +77,13 @@ func attach(entity : Node2D):
 	attached_entity = entity
 	prev_attached_parent = entity.get_parent()
 	
-	entity.get_parent().remove_child(entity)
+	# entity.get_parent().remove_child(entity)
 	
 	var distance = abs(entity.global_position.x - $AnchorPoint.global_position.x)
 	$AnchorPoint.progress += distance 
+	print($AnchorPoint.progress_ratio)
 
-	$AnchorPoint.add_child(entity)
+	# $AnchorPoint.add_child(entity)
 	entity.position = Vector2.ZERO
 	
 	moving_entity = true
@@ -90,9 +91,9 @@ func attach(entity : Node2D):
 func detach():
 	$DisabledTimer.start()
 	if attached_entity:
-		$AnchorPoint.remove_child(attached_entity)
+		# $AnchorPoint.remove_child(attached_entity)
 
-		prev_attached_parent.add_child(attached_entity)
+		# prev_attached_parent.add_child(attached_entity)
 		attached_entity.global_position = $AnchorPoint.global_position
 		attached_entity.detach_from_belt()
 
@@ -108,17 +109,25 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	if $DisabledTimer.time_left > 0:
 		return
 
+	if body == attached_entity:
+		return
+
 	if $FreezableComponent.frozen:
 		return
 	# if prev_attached_entity and body == prev_attached_entity:
 	#     return
 
 	if body.has_method("can_be_attached") and body.can_be_attached():
-		body.attach_to_belt()
 		attach.call_deferred(body)
+		body.attach_to_belt.call_deferred($AnchorPoint)
 	# 	attach(body)
 
 
 func _on_freezable_component_on_freeze_toggle(is_frozen: bool) -> void:
 	if is_frozen and attached_entity != null:
 		detach()
+
+
+func _on_freezable_component_on_restart() -> void:
+	$DisabledTimer.stop()
+	pass # Replace with function body.

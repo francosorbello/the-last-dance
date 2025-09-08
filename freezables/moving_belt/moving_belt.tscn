@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwhodtrhy5nid"]
+[gd_scene load_steps=7 format=3 uid="uid://dwhodtrhy5nid"]
 
 [ext_resource type="Script" uid="uid://c5oytandxvq6m" path="res://freezables/moving_belt/moving_belt.gd" id="1_yw4hm"]
 [ext_resource type="Shader" uid="uid://3obmuvf45foq" path="res://freezables/moving_belt/starfield.gdshader" id="2_1qfyv"]
 [ext_resource type="Texture2D" uid="uid://ca1jm64lcf0a0" path="res://freezables/moving_belt/white.png" id="3_61or5"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="3_q3xvv"]
 [ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="5_61or5"]
-
-[sub_resource type="Curve2D" id="Curve2D_q3xvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61or5"]
 shader = ExtResource("2_1qfyv")
@@ -37,8 +35,8 @@ shader_parameter/background_color = Color(0.142724, 0.208221, 0.426707, 1)
 shader_parameter/enabled_bg_color = Color(0.433704, 0.541262, 0.851105, 1)
 
 [node name="MovingBelt" type="Path2D"]
-curve = SubResource("Curve2D_q3xvv")
 script = ExtResource("1_yw4hm")
+move_speed = 100.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -49,7 +47,7 @@ texture = ExtResource("3_61or5")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 
 [node name="AnchorPoint" type="PathFollow2D" parent="."]
-position = Vector2(20, 49)
+position = Vector2(-72, 8)
 rotates = false
 loop = false
 
@@ -63,9 +61,11 @@ antialiased = true
 one_shot = true
 
 [node name="FreezableComponent" parent="." instance=ExtResource("3_q3xvv")]
+only_active_when_visible = true
 
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("5_61or5")]
 visual = NodePath("../../Area2D/Polygon2D")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
+[connection signal="on_restart" from="FreezableComponent" to="." method="_on_freezable_component_on_restart"]

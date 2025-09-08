@@ -15,6 +15,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var checkpoint_manager : Node
 
 var _initial_pos : Vector2
+var _can_be_attached : bool = true
 
 func _ready():
 	$Sprite2D.flip_h = flip_h
@@ -58,9 +59,10 @@ func do_interact():
 	$BetterInteractableManager.use_interactable()
 
 func can_be_attached() -> bool:
-	return true
+	return _can_be_attached
 
-func attach_to_belt():
+func attach_to_belt(anchor_point : Node2D):
+	$StateMachine.send_message_to("BeltingState",{"anchor_point" : anchor_point})
 	$StateMachine.transition_to("BeltingState")
 
 func detach_from_belt():
@@ -84,12 +86,15 @@ func die():
 	_on_hurt_area_damage_taken()
 
 func _on_hurt_area_damage_taken() -> void:
+	_can_be_attached = false
+	$StateMachine.transition_to("IdleState")
 	global_position = _get_respawn_point()
 	$DeadAnimPlayer.play_anim($Sprite2D)
 	$DeadSound.play()
 	dead.emit()
 	_restart_freezables()
-	pass # Replace with function body.
+	await get_tree().create_timer(0.1).timeout
+	_can_be_attached = true
 
 func _restart_freezables():
 	for freezable in get_tree().get_nodes_in_group("freezable"):

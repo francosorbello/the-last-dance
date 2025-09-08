@@ -7,6 +7,7 @@ extends Node
 var frozen : bool = false
 
 signal on_freeze_toggle(is_frozen : bool)
+signal on_restart
 
 var _frozen_visual_component : Node
 var _on_screen_notifier : VisibleOnScreenNotifier2D
@@ -48,6 +49,7 @@ func _on_screen_exited():
 	_can_be_activated = false
 
 func restart():
+	on_restart.emit()
 	frozen = true
 	_can_be_activated = true
 	toggle_freeze()
