@@ -1,0 +1,7 @@
+~ start
+Amante: Esto es un error! Por favor, escucham-
+Corcel: AHORA NO ES EL MOMENTO
+Corcel: TENGO QUE LLEGAR A LOS 2 MILLONES. SOLO 20 MIL PESOS.
+Amante: NO!!!
+do go_to_ending()
+=> END

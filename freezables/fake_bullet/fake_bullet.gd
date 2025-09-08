@@ -3,7 +3,6 @@ extends Node2D
 @export var speed : float = 10
 
 
-
 func _do_setup() -> void:
 	if not GlobalData.first_play:
 		$FreezableComponent.toggle_freeze()

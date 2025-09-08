@@ -1,20 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc15intbseh7"]
+[gd_scene load_steps=7 format=3 uid="uid://bc15intbseh7"]
 
+[ext_resource type="Resource" uid="uid://fwvd67rli1l3" path="res://dialogues/map3room0.dialogue" id="1_5t3g7"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_7uj83"]
 [ext_resource type="PackedScene" uid="uid://dgks666k0klxv" path="res://interactables/interactable_component/better_interactable_component.tscn" id="2_y5t64"]
 [ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="3_enmka"]
+[ext_resource type="PackedScene" uid="uid://wk3pl450ctat" path="res://utils/interact_label.tscn" id="5_4iddk"]
 
 [sub_resource type="GDScript" id="GDScript_enmka"]
 script/source = "extends Node2D
 
+@export var dialogue : DialogueResource
 
 func _on_better_interactable_component_on_interact() -> void:
-	GlobalData.switch_to_scene(\"ending_good\")
+	DialogueManager.show_dialogue_balloon(dialogue,\"start\",[self])
 	pass # Replace with function body.
+
+func go_to_ending():
+	GlobalData.switch_to_scene(\"ending_good\")
+	
 "
 
 [node name="LoverInteractable" type="Node2D"]
 script = SubResource("GDScript_enmka")
+dialogue = ExtResource("1_5t3g7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7uj83")
@@ -24,6 +32,12 @@ region_rect = Rect2(24, 21, 18, 27)
 
 [node name="BetterInteractableComponent" parent="." instance=ExtResource("2_y5t64")]
 is_interactable = false
+
+[node name="InteractLabel" parent="BetterInteractableComponent" instance=ExtResource("5_4iddk")]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 10.0
+offset_bottom = -12.0
 
 [node name="OutlineComponent" parent="BetterInteractableComponent" node_paths=PackedStringArray("sprite") instance=ExtResource("3_enmka")]
 sprite = NodePath("../../Sprite2D")

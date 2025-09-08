@@ -35,7 +35,7 @@ visible = false
 position = Vector2(200, 34)
 
 [node name="Player" parent="." instance=ExtResource("1_tn8io")]
-position = Vector2(200, 29)
+position = Vector2(168, 30)
 flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

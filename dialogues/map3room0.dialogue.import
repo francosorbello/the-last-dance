@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://fwvd67rli1l3"
+path="res://.godot/imported/map3room0.dialogue-08a85fa32310dcfe203507652607d79f.tres"
+
+[deps]
+
+source_file="res://dialogues/map3room0.dialogue"
+dest_files=["res://.godot/imported/map3room0.dialogue-08a85fa32310dcfe203507652607d79f.tres"]
+
+[params]
+
+defaults=true
