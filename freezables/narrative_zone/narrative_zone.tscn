@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://camdghmr4qjx6"]
+[gd_scene load_steps=12 format=3 uid="uid://camdghmr4qjx6"]
 
 [ext_resource type="Script" uid="uid://de6wsta0hibih" path="res://freezables/narrative_zone/narrative_zone.gd" id="1_5wg0u"]
 [ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="1_j0hb7"]
 [ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="3_55xxq"]
 [ext_resource type="Texture2D" uid="uid://cqc7eyr16nfpy" path="res://assets/bonfire/Bonfire_1.png" id="3_vt1p5"]
 [ext_resource type="Texture2D" uid="uid://cyebac0eay8ip" path="res://assets/bonfire/Bonfire_2.png" id="4_qgott"]
+[ext_resource type="PackedScene" uid="uid://xa8ntkiwaptg" path="res://utils/vos_enable_and_disappear.tscn" id="4_r6eb6"]
 [ext_resource type="Texture2D" uid="uid://yogheslnqv21" path="res://assets/bonfire/Bonfire_3.png" id="5_yomxi"]
 [ext_resource type="Texture2D" uid="uid://2jbx7822hx58" path="res://assets/bonfire/Bonfire_4.png" id="6_55xxq"]
 [ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="7_qgott"]
@@ -35,13 +36,12 @@ script = ExtResource("1_5wg0u")
 
 [node name="FreezableComponent" parent="." instance=ExtResource("1_j0hb7")]
 only_active_when_visible = true
-start_frozen = true
+debug = true
 
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_55xxq")]
 visual = NodePath("../..")
 
-[node name="VisibleOnScreenEnabler2D2" type="VisibleOnScreenEnabler2D" parent="FreezableComponent"]
-enable_node_path = NodePath("../FrozenVisualComponent")
+[node name="VOSEnableAndDisappear" parent="FreezableComponent" instance=ExtResource("4_r6eb6")]
 
 [node name="Bonfire" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -62,4 +62,5 @@ position = Vector2(-20, 5)
 texture = ExtResource("8_yomxi")
 
 [connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_freezable_component_on_freeze_toggle"]
+[connection signal="on_restart" from="FreezableComponent" to="." method="_on_freezable_component_on_restart"]
 [connection signal="setup_finished" from="FreezableComponent/FrozenVisualComponent" to="." method="_on_frozen_visual_component_setup_finished"]

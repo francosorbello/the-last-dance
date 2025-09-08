@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ddpfgbrw3m0d8"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://plqnvmlwpoek"]
 
-[sub_resource type="Shader" id="Shader_x7ki3"]
+[sub_resource type="Shader" id="Shader_paf1q"]
 code = "shader_type canvas_item;
 
 uniform vec4 replacement_color : source_color;
@@ -155,11 +155,11 @@ void fragment() {
 }"
 
 [resource]
-shader = SubResource("Shader_x7ki3")
-shader_parameter/replacement_color = Color(0.298039, 0.772549, 0.894118, 1)
-shader_parameter/WATER_COL = Color(0, 0, 0, 1)
-shader_parameter/WATER2_COL = Color(0.00246435, 0.117164, 0.190457, 1)
-shader_parameter/FOAM_COL = Color(0, 0, 0, 1)
+shader = SubResource("Shader_paf1q")
+shader_parameter/replacement_color = Color(1, 0.772549, 0.894118, 1)
+shader_parameter/WATER_COL = Color(0.823529, 0, 0, 1)
+shader_parameter/WATER2_COL = Color(1, 0.117647, 0.192157, 1)
+shader_parameter/FOAM_COL = Color(0.717647, 0, 0, 1)
 shader_parameter/distortion_speed = 2.0
 shader_parameter/tile = Vector2(5, 5)
 shader_parameter/offset = Vector2(0, 0)

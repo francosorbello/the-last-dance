@@ -69,8 +69,6 @@ texture = ExtResource("2_7n4ib")
 8:11/0 = 0
 9:11/size_in_atlas = Vector2i(1, 2)
 9:11/0 = 0
-10:11/size_in_atlas = Vector2i(4, 2)
-10:11/0 = 0
 14:11/size_in_atlas = Vector2i(1, 2)
 14:11/0 = 0
 8:13/0 = 0
@@ -86,6 +84,8 @@ texture = ExtResource("2_7n4ib")
 13:13/0 = 0
 13:14/size_in_atlas = Vector2i(2, 1)
 13:14/0 = 0
+10:12/size_in_atlas = Vector2i(4, 1)
+10:12/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
