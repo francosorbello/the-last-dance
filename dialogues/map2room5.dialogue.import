@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b2n38cyakwew7"
+path="res://.godot/imported/map2room5.dialogue-88975825119faf47beec83b3c30c98e3.tres"
+
+[deps]
+
+source_file="res://dialogues/map2room5.dialogue"
+dest_files=["res://.godot/imported/map2room5.dialogue-88975825119faf47beec83b3c30c98e3.tres"]
+
+[params]
+
+defaults=true

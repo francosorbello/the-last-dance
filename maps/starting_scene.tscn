@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ikf0npqpr4n0"]
+
+[ext_resource type="Script" uid="uid://c8u4fe53gtgxw" path="res://maps/starting_scene.gd" id="1_sof7w"]
+[ext_resource type="Resource" uid="uid://cjfl72dx1qq4m" path="res://dialogues/start_cutscene.dialogue" id="2_quthg"]
+[ext_resource type="AudioStream" uid="uid://c24c47ox0prns" path="res://sounds/pistol.mp3" id="2_yyhff"]
+[ext_resource type="AudioStream" uid="uid://hpu75ovcwga" path="res://assets/low_808.ogg" id="4_wcrmp"]
+
+[node name="StartingScene" type="Node2D"]
+script = ExtResource("1_sof7w")
+starting_dialogue = ExtResource("2_quthg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 90
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yyhff")
+volume_db = -10.0
+
+[node name="808" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wcrmp")
+autoplay = true

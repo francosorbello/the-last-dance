@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://xdhpu5nurlhv"]
+
+[ext_resource type="Script" uid="uid://cp21obcr3eyol" path="res://freezables/fake_bullet/fake_bullet.gd" id="1_gtp8b"]
+[ext_resource type="Texture2D" uid="uid://trkfxi3k4kms" path="res://assets/fire-ball.png" id="1_snkws"]
+[ext_resource type="PackedScene" uid="uid://du2n7hnfpoyuw" path="res://freezables/freezable_component.tscn" id="2_4nirw"]
+[ext_resource type="PackedScene" uid="uid://c0t0qds41kbg6" path="res://freezables/frozen_visual_component.tscn" id="3_gtp8b"]
+[ext_resource type="AudioStream" uid="uid://05ipqscmmbf3" path="res://sounds/flamethrower_looped.mp3" id="5_eclv0"]
+[ext_resource type="FontFile" uid="uid://dqplyhev5mxut" path="res://assets/fonts/monogram-extended.ttf" id="6_cy2uw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtp8b"]
+atlas = ExtResource("1_snkws")
+region = Rect2(0, 0, 52, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eclv0"]
+atlas = ExtResource("1_snkws")
+region = Rect2(52, 0, 52, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy2uw"]
+atlas = ExtResource("1_snkws")
+region = Rect2(104, 0, 52, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bdooe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtp8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eclv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy2uw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snkws"]
+radius = 6.0
+height = 36.0
+
+[node name="FakeBullet" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_gtp8b")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bdooe")
+frame = 1
+frame_progress = 0.701211
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_snkws")
+
+[node name="FreezableComponent" parent="." instance=ExtResource("2_4nirw")]
+
+[node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_gtp8b")]
+visual = NodePath("../../Sprite2D")
+override_params = Dictionary[String, Variant]({
+"effect_intensity": 0.7
+})
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_eclv0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -74.0
+offset_top = -34.0
+offset_right = 79.0
+offset_bottom = -11.0
+theme_override_fonts/font = ExtResource("6_cy2uw")
+theme_override_font_sizes/font_size = 24
+text = "[C] para congelar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="on_freeze_toggle" from="FreezableComponent" to="." method="_on_toggle_freeze"]
+[connection signal="setup_finished" from="FreezableComponent/FrozenVisualComponent" to="." method="_do_setup"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc15intbseh7"]
+
+[ext_resource type="Texture2D" uid="uid://dobra11p1wbah" path="res://assets/DarkSamurai3.png" id="1_7uj83"]
+[ext_resource type="PackedScene" uid="uid://dgks666k0klxv" path="res://interactables/interactable_component/better_interactable_component.tscn" id="2_y5t64"]
+[ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="3_enmka"]
+
+[node name="LoverInteractable" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7uj83")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(24, 21, 18, 27)
+
+[node name="BetterInteractableComponent" parent="." instance=ExtResource("2_y5t64")]
+is_interactable = false
+
+[node name="OutlineComponent" parent="BetterInteractableComponent" node_paths=PackedStringArray("sprite") instance=ExtResource("3_enmka")]
+sprite = NodePath("../../Sprite2D")
+override_color_when_disabled = true
+override_color_value = Color(1, 1, 1, 0.556863)

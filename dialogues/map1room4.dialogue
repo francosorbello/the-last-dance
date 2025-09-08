@@ -1,0 +1,26 @@
+~ start
+[color=#4DE84F]?[/color]: Acá es donde marcamos cuando llegamos a trabajar, y acá es -disculpa el quilombo
+[color=#4DE84F]?[/color]: José!
+[color=#8EB1E]??[/color]: QUE???
+[color=#4DE84F]?[/color]: Acordate de sacar las cajas estas que no se puede caminar
+[color=#E8EB1E]??[/color]: Sí jefe, en seguida las saco.
+[color=#4DE84F]?[/color]: En fin, el escritorio de allá es el que te toca a vos.
+[color=#4DE84F]?[/color]: Alguna consulta?
+Amante: ...
+Amante: creo que estoy bien, gracias.
+[color=#4DE84F]?[/color]: Bueno, cualquier cosa me avisas.
+[color=#4DE84F]?[/color]: [fade start=4 length=14]José, no te olvidés de las cajas por favor[/fade]
+Amante: ...
+???: Hace mucho que no veía una nueva cara por acá, che.
+???: Decime pibe, no tenés un chicle que me convides?
+???: Tengo el sabor horrible de café y ya no sé cómo hacer para sacarmelo.
+Amante: disculpa?
+???: Chicle. De menta. O el sabor que tengas, de todas formas los mejores son los de mandarina.
+Amante: ...
+Amante: ok, te convido uno. Pero hablando con seriedad el mejor chicle es el de sandia.
+???: Buena elección, no te voy a discutir eso.
+???: Decime, como te llamás?
+Amante: Me llamo Amante.
+Corcel: Un gusto Amante, mi nombre es Corcel.
+
+=> END

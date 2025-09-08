@@ -3,6 +3,10 @@ extends Node
 @export var important_scenes : Dictionary[String, PackedScene]
 var collectables : Array[String]
 
+var first_play : bool = true
+
+var bullet_pos : Vector2
+
 func _ready():
     fade_out()
 
@@ -26,4 +30,9 @@ func switch_to_scene(scene_name : String):
         fade_out()
     else:
         push_error("No scene named %s"%scene_name)
-    
+
+func secret_ending():
+    pass
+
+func starting_cutscene():
+    pass

@@ -1,0 +1,30 @@
+~ start
+[i] Un mes después...[/i]
+Corcel: ...
+Corcel: ya se puede pasar?
+?: sí. Se despertó hace un rato así que todavía está un poco perdido.
+Corcel: claro, claro. No hay problema.
+Corcel: ...
+Corcel: ...
+Corcel: Hola?
+Amante: ...
+Amante: quién diría que un balazo duele tanto?
+Corcel: te pasaste un mes durmiendo asi que me imagino que un montón.
+Corcel: ...
+Corcel: venía a pedirte disculpas, pibe. Lo que hice fue horrible.
+Amante: ...
+Amante: está bien. Entiendo de donde venías.
+Corcel: ...no hay mucho que pueda hacer, pero quería mostrate esto.
+Corcel: ...
+do show_drawing()
+Corcel: es un condor. Un condor andino más especificamente.
+Corcel: una criatura hermosa. En constante intercambio con el mundo que lo rodea.
+Corcel: el balance de la naturaleza en sus manos, se mueve con la libertad de quien decide su destino.
+Corcel: en otras palbras, un artista.
+Corcel: realmente me equivoqué.
+Corcel: cómo no pude ver la alegría que el arte le da a mi vida?
+Corcel: no necesito que mis obras estén colgadas en un museo para que eso sea verdad.
+Corcel: ...
+Corcel: decime pibe, no tenes un chicle que me convides?
+Corcel: todavia no arreglan la cafetera y no me puedo sacar el mal sabor de la boca.
+=> END

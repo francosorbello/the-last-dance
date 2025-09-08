@@ -1,0 +1,7 @@
+~ start
+...: Esto es un error! Por favor, escucham-
+[color=#FF0000]###: AHORA NO ES EL MOMENTO
+[color=#FF0000]###: TENGO QUE LLEGAR A
+...: NO!!!
+do play_shot_anim()
+=> END

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmy4t1b5y4iao"]
+
+[ext_resource type="Script" uid="uid://cgq0ke5ykg7of" path="res://maps/ending_good.gd" id="1_lce18"]
+[ext_resource type="Resource" uid="uid://bktsjseobo8gx" path="res://dialogues/ending_good.dialogue" id="2_acsg6"]
+[ext_resource type="Texture2D" uid="uid://domwop5hrsfkf" path="res://condor.png" id="2_et607"]
+[ext_resource type="AudioStream" uid="uid://c24c47ox0prns" path="res://sounds/pistol.mp3" id="2_sbsm4"]
+
+[node name="EndingGood" type="Node"]
+script = ExtResource("1_lce18")
+dialogue = ExtResource("2_acsg6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 90
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 111.0
+grow_horizontal = 2
+texture = ExtResource("2_et607")
+expand_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sbsm4")
+volume_db = -10.0

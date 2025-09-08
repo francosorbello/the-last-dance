@@ -18,6 +18,8 @@ func _on_frozen_visual_component_setup_finished() -> void:
 	_force_frozen_state()
 
 func _on_freezable_component_on_freeze_toggle(is_frozen:bool) -> void:
+	if not dialogue:
+		return
 	if not is_frozen and $FreezableComponent/VisibleOnScreenEnabler2D.is_on_screen():
 		$Bonfire.play()
 		# await get_tree().create_timer(0.4).timeout
@@ -27,7 +29,6 @@ func _force_frozen_state():
 	await get_tree().process_frame
 	$FreezableComponent.frozen = true
 	$FreezableComponent/FrozenVisualComponent.enable_visual()
-	print("Forzed freezable component")
 
 func _on_freezable_component_on_restart() -> void:
 	_force_frozen_state()

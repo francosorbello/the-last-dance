@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterList" load_steps=11 format=3 uid="uid://oior5cfrtr47"]
+[gd_resource type="Resource" script_class="CharacterList" load_steps=12 format=3 uid="uid://oior5cfrtr47"]
 
 [ext_resource type="Script" uid="uid://c8erkuegts2r0" path="res://characters/character_info.gd" id="1_y8bt6"]
 [ext_resource type="Texture2D" uid="uid://cgidg5kko1rsv" path="res://assets/portraits/portrait.png" id="2_yawqm"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://m3lskaxcoca" path="res://sounds/voice_lover.mp3" id="3_xsy4d"]
 [ext_resource type="Texture2D" uid="uid://dq5rieqe4rts8" path="res://assets/portraits/portrait-gray.png" id="3_yawqm"]
 [ext_resource type="AudioStream" uid="uid://ne5k4gok8prm" path="res://sounds/voice_steed.mp3" id="5_cejnb"]
+[ext_resource type="AudioStream" uid="uid://bdwg2jm2byru5" path="res://sounds/voice_default.mp3" id="6_cejnb"]
 
 [sub_resource type="Gradient" id="Gradient_wmply"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -16,7 +17,7 @@ width = 1
 
 [sub_resource type="Resource" id="Resource_xsy4d"]
 script = ExtResource("1_y8bt6")
-character_name = "The Lover"
+character_name = "Amante"
 code_name = "lover"
 portrait = ExtResource("2_yawqm")
 voice = ExtResource("3_xsy4d")
@@ -24,8 +25,8 @@ metadata/_custom_type_script = "uid://c8erkuegts2r0"
 
 [sub_resource type="Resource" id="Resource_y8bt6"]
 script = ExtResource("1_y8bt6")
-character_name = "The Steed"
-code_name = "steed"
+character_name = "Corcel"
+code_name = "corcel"
 portrait = ExtResource("3_yawqm")
 voice = ExtResource("5_cejnb")
 metadata/_custom_type_script = "uid://c8erkuegts2r0"
@@ -34,4 +35,5 @@ metadata/_custom_type_script = "uid://c8erkuegts2r0"
 script = ExtResource("3_nmwru")
 characters = Array[ExtResource("1_y8bt6")]([SubResource("Resource_xsy4d"), SubResource("Resource_y8bt6")])
 blank_portrait = SubResource("GradientTexture1D_hsfwb")
+default_voice = ExtResource("6_cejnb")
 metadata/_custom_type_script = "uid://iba1c3pka2cm"

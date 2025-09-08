@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bhsp2vq0uluir"]
+[gd_scene load_steps=36 format=4 uid="uid://bhsp2vq0uluir"]
 
 [ext_resource type="Texture2D" uid="uid://c62bspqg4kcbj" path="res://assets/sky.png" id="1_1qkwc"]
 [ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="1_qqv0e"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://csiweyc3g6glc" path="res://assets/gun_collectable.png" id="9_1csbt"]
 [ext_resource type="PackedScene" uid="uid://bpmicnn75rcmd" path="res://freezables/platform/platform.tscn" id="9_p2y3p"]
 [ext_resource type="Resource" uid="uid://cp76x3ot6suf2" path="res://dialogues/memory_gun.dialogue" id="10_tgswf"]
+[ext_resource type="Resource" uid="uid://bh2tf1lpah28r" path="res://dialogues/map2room9.dialogue" id="11_gjc4w"]
+[ext_resource type="Resource" uid="uid://b2n38cyakwew7" path="res://dialogues/map2room5.dialogue" id="17_xougk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtq80"]
 size = Vector2(35, 86)
@@ -177,7 +179,6 @@ shape = SubResource("RectangleShape2D_oybhm")
 
 [node name="Checkpoint4" parent="CheckpointManager" instance=ExtResource("6_un36w")]
 position = Vector2(1296, 256)
-initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint4"]
 position = Vector2(-1.5, -6)
@@ -196,6 +197,7 @@ shape = SubResource("RectangleShape2D_p2y3p")
 
 [node name="Checkpoint6" parent="CheckpointManager" instance=ExtResource("6_un36w")]
 position = Vector2(2536, -48)
+initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint6"]
 position = Vector2(-1.5, -6)
@@ -212,6 +214,7 @@ position = Vector2(2116.47, -84.2096)
 
 [node name="NarrativeZone" parent="Rooms/Room9" instance=ExtResource("7_evkhp")]
 position = Vector2(19.5251, 32.2096)
+dialogue = ExtResource("11_gjc4w")
 
 [node name="MemoryInteractable" parent="Rooms/Room9" instance=ExtResource("8_w1ypl")]
 position = Vector2(-60.4749, 44.2096)
@@ -279,6 +282,7 @@ position = Vector2(1752, 264)
 
 [node name="NarrativeZone" parent="Rooms/Room5" instance=ExtResource("7_evkhp")]
 position = Vector2(0, 5)
+dialogue = ExtResource("17_xougk")
 
 [node name="Room4" type="Node2D" parent="Rooms"]
 position = Vector2(1430.43, 271.427)

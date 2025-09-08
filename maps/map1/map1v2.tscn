@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dh67s0d2tcbtw"]
+[gd_scene load_steps=46 format=4 uid="uid://dh67s0d2tcbtw"]
 
 [ext_resource type="TileSet" uid="uid://bjrhravx1p5o0" path="res://maps/room_layout.tres" id="1_f3jvc"]
 [ext_resource type="Texture2D" uid="uid://dydirkukvf4np" path="res://assets/Layer_0009_2.png" id="1_j8rpn"]
@@ -13,12 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://bauh2b7kq4sl5" path="res://freezables/jump_pad/small_jump_pad.tscn" id="8_corqa"]
 [ext_resource type="PackedScene" uid="uid://bpmicnn75rcmd" path="res://freezables/platform/platform.tscn" id="8_xeaqt"]
 [ext_resource type="PackedScene" uid="uid://camdghmr4qjx6" path="res://freezables/narrative_zone/narrative_zone.tscn" id="10_pi6y8"]
-[ext_resource type="Resource" uid="uid://b67vsw6dceh6q" path="res://tests/test.dialogue" id="11_rn5w1"]
 [ext_resource type="PackedScene" uid="uid://b3tenrcjl2ylt" path="res://freezables/damage_saw/damage_saw.tscn" id="12_blpaa"]
 [ext_resource type="PackedScene" uid="uid://bjh8cl7oqxdl5" path="res://freezables/platform/platform_small.tscn" id="13_40tgm"]
+[ext_resource type="Resource" uid="uid://dce17stuihwqo" path="res://dialogues/map1room4.dialogue" id="14_g8jnr"]
 [ext_resource type="PackedScene" uid="uid://cjr6do5j2w2li" path="res://freezable_jump_pad.tscn" id="14_tgsvg"]
 [ext_resource type="PackedScene" uid="uid://cmxcam2ye664y" path="res://interactables/memory_interactable.tscn" id="17_ft4pq"]
 [ext_resource type="Texture2D" uid="uid://drmt7qn3jutib" path="res://assets/GraySamuraiStand.png" id="18_8o3pa"]
+[ext_resource type="Resource" uid="uid://b17egeakxxjee" path="res://dialogues/map1room14.dialogue" id="18_b3m5u"]
+[ext_resource type="Resource" uid="uid://bar8a8kygcj86" path="res://dialogues/map1room18.dialogue" id="19_h1hj7"]
 [ext_resource type="Resource" uid="uid://b7rymjrwkk084" path="res://dialogues/memory_red_samurai.dialogue" id="19_paf1q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8880a"]
@@ -175,7 +177,6 @@ follow_smoothing = 0.3
 
 [node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("6_8880a")]
 position = Vector2(46, 97)
-initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
 position = Vector2(0, 6)
@@ -264,6 +265,7 @@ position = Vector2(8, 0)
 
 [node name="Checkpoint10" parent="CheckpointManager" instance=ExtResource("6_8880a")]
 position = Vector2(3216, -320)
+initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint10"]
 position = Vector2(8.82214, -14.3919)
@@ -308,7 +310,7 @@ position = Vector2(2164.34, -73.2191)
 
 [node name="NarrativeZone" parent="RoomStuff/Room4" instance=ExtResource("10_pi6y8")]
 position = Vector2(-90.3401, 37.2191)
-dialogue = ExtResource("11_rn5w1")
+dialogue = ExtResource("14_g8jnr")
 
 [node name="Room5" type="Node2D" parent="RoomStuff"]
 
@@ -511,6 +513,7 @@ position = Vector2(2399, -224)
 
 [node name="NarrativeZone" parent="RoomStuff/Room14" instance=ExtResource("10_pi6y8")]
 position = Vector2(-7, 12)
+dialogue = ExtResource("18_b3m5u")
 
 [node name="Room15" type="Node2D" parent="RoomStuff"]
 position = Vector2(2720, -232)
@@ -592,6 +595,7 @@ position = Vector2(3672, -88)
 
 [node name="NarrativeZone" parent="RoomStuff/Room18" instance=ExtResource("10_pi6y8")]
 position = Vector2(0, 21)
+dialogue = ExtResource("19_h1hj7")
 
 [node name="MemoryInteractable" parent="RoomStuff/Room18" instance=ExtResource("17_ft4pq")]
 position = Vector2(128, 32)

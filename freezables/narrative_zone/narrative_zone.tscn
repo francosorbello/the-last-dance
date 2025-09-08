@@ -36,7 +36,6 @@ script = ExtResource("1_5wg0u")
 
 [node name="FreezableComponent" parent="." instance=ExtResource("1_j0hb7")]
 only_active_when_visible = true
-debug = true
 
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_55xxq")]
 visual = NodePath("../..")
