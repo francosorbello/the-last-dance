@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://wk3pl450ctat"]
+
+[ext_resource type="FontFile" uid="uid://dqplyhev5mxut" path="res://assets/fonts/monogram-extended.ttf" id="1_d04p1"]
+[ext_resource type="Script" uid="uid://chk2kbsc0ae84" path="res://utils/interact_label.gd" id="2_nago1"]
+
+[node name="InteractLabel" type="Label"]
+offset_right = 20.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("1_d04p1")
+text = "[Z]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_nago1")

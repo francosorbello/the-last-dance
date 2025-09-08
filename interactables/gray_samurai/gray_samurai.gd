@@ -9,3 +9,8 @@ func _on_interactable_component_on_hover() -> void:
 func _on_interactable_component_on_leave() -> void:
     print("leave me :(")
     $OutlineComponent.disable_outline()
+
+
+func _on_interactable_component_on_interact() -> void:
+    GlobalData.switch_to_scene("map1")
+    pass # Replace with function body.

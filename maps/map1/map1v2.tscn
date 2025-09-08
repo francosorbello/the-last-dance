@@ -171,6 +171,7 @@ follow_smoothing = 0.3
 
 [node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("6_8880a")]
 position = Vector2(46, 97)
+initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
 position = Vector2(0, 6)
@@ -259,7 +260,6 @@ position = Vector2(8, 0)
 
 [node name="Checkpoint10" parent="CheckpointManager" instance=ExtResource("6_8880a")]
 position = Vector2(3216, -320)
-initial = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint10"]
 position = Vector2(8.82214, -14.3919)

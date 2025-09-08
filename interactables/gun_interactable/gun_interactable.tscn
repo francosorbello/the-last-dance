@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4cadj243vatq"]
+[gd_scene load_steps=6 format=3 uid="uid://b4cadj243vatq"]
 
 [ext_resource type="Texture2D" uid="uid://csajnrjp1uheh" path="res://assets/gray_samurai/GraySamuraiGun.png" id="1_37cpl"]
 [ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="3_t7jv8"]
 [ext_resource type="PackedScene" uid="uid://dgks666k0klxv" path="res://interactables/interactable_component/better_interactable_component.tscn" id="4_1onns"]
+[ext_resource type="PackedScene" uid="uid://wk3pl450ctat" path="res://utils/interact_label.tscn" id="4_v402x"]
+
+[sub_resource type="GDScript" id="GDScript_1onns"]
+script/source = "extends Node2D
+
+
+func _on_better_interactable_component_on_interact() -> void:
+	GlobalData.switch_to_scene(\"map2\")
+"
 
 [node name="GunInteractable" type="Node2D"]
+script = SubResource("GDScript_1onns")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_37cpl")
@@ -18,3 +28,11 @@ debug_name = "Gun"
 sprite = NodePath("../../Sprite2D")
 override_color_when_disabled = true
 override_color_value = Color(1, 1, 1, 0.509804)
+
+[node name="InteractLabel" parent="BetterInteractableComponent" instance=ExtResource("4_v402x")]
+offset_left = -7.0
+offset_top = -19.0
+offset_right = 13.0
+offset_bottom = -1.0
+
+[connection signal="on_interact" from="BetterInteractableComponent" to="." method="_on_better_interactable_component_on_interact"]

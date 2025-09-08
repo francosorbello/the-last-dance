@@ -1,12 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2la38efje8xs"]
+[gd_scene load_steps=6 format=3 uid="uid://c2la38efje8xs"]
 
 [ext_resource type="Script" uid="uid://btqep8dkhhf2w" path="res://interactables/gray_samurai/gray_samurai.gd" id="1_2e8ms"]
 [ext_resource type="Texture2D" uid="uid://b3b8k26m253d1" path="res://assets/gray_samurai/GraySamuraiShoot.png" id="1_l5n40"]
-[ext_resource type="PackedScene" uid="uid://bldjy0jf7o4h2" path="res://interactables/interactable_component/interactable_component.tscn" id="2_4624n"]
 [ext_resource type="PackedScene" uid="uid://dgks666k0klxv" path="res://interactables/interactable_component/better_interactable_component.tscn" id="4_4nwex"]
 [ext_resource type="PackedScene" uid="uid://b4jjcolqqt2xe" path="res://interactables/outline_component/outline_component.tscn" id="4_ex5mg"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4624n"]
+[ext_resource type="PackedScene" uid="uid://wk3pl450ctat" path="res://utils/interact_label.tscn" id="4_xxayj"]
 
 [node name="GraySamuraiInteractable" type="Node2D"]
 script = ExtResource("1_2e8ms")
@@ -14,16 +12,16 @@ script = ExtResource("1_2e8ms")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_l5n40")
 
-[node name="InteractableComponent" parent="." instance=ExtResource("2_4624n")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
-shape = SubResource("CapsuleShape2D_4624n")
-
 [node name="BetterInteractableComponent2" parent="." instance=ExtResource("4_4nwex")]
 debug_name = "Samurai"
+
+[node name="InteractLabel" parent="BetterInteractableComponent2" instance=ExtResource("4_xxayj")]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 10.0
+offset_bottom = -12.0
 
 [node name="OutlineComponent" parent="BetterInteractableComponent2" node_paths=PackedStringArray("sprite") instance=ExtResource("4_ex5mg")]
 sprite = NodePath("../../Sprite2D")
 
-[connection signal="on_hover" from="InteractableComponent" to="." method="_on_interactable_component_on_hover"]
-[connection signal="on_leave" from="InteractableComponent" to="." method="_on_interactable_component_on_leave"]
+[connection signal="on_interact" from="BetterInteractableComponent2" to="." method="_on_interactable_component_on_interact"]
