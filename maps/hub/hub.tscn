@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://qt5jrce5c5v1"]
+[gd_scene load_steps=14 format=4 uid="uid://qt5jrce5c5v1"]
 
 [ext_resource type="Script" uid="uid://ckqj3jy85k1mt" path="res://maps/hub/hub.gd" id="1_6sgff"]
 [ext_resource type="PackedScene" uid="uid://buc2hq5m81801" path="res://player/player.tscn" id="1_tn8io"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://bc15intbseh7" path="res://interactables/lover_interactable/lover_interactable.tscn" id="6_75dke"]
 [ext_resource type="PackedScene" uid="uid://xdhpu5nurlhv" path="res://freezables/fake_bullet/fake_bullet.tscn" id="7_s5dxo"]
 [ext_resource type="AudioStream" uid="uid://hpu75ovcwga" path="res://assets/low_808.ogg" id="8_jq3kj"]
+[ext_resource type="PackedScene" uid="uid://ddheshicik6w8" path="res://checkpoints/checkpoint_manager.tscn" id="11_5g0mx"]
+[ext_resource type="PackedScene" uid="uid://bnbucya5fuji0" path="res://checkpoints/checkpoint.tscn" id="12_1wk6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0o58"]
 
 [node name="Hub" type="Node2D"]
 script = ExtResource("1_6sgff")
@@ -25,10 +29,10 @@ tile_map_data = PackedByteArray("AAD1/wMAAAABAAEAAAD1/wQAAAABAAEAAAD1/wUAAAABAAE
 tile_set = ExtResource("3_l7um6")
 
 [node name="GraySamuraiInteractable" parent="." instance=ExtResource("3_52paf")]
-position = Vector2(-10, 30)
+position = Vector2(-11, 32)
 
 [node name="GunInteractable" parent="." instance=ExtResource("2_2u0ew")]
-position = Vector2(-10, 30)
+position = Vector2(-11, 32)
 
 [node name="LoverInteractable" parent="." instance=ExtResource("6_75dke")]
 visible = false
@@ -42,7 +46,7 @@ flip_h = true
 position = Vector2(105, -5)
 
 [node name="FakeBullet" parent="." instance=ExtResource("7_s5dxo")]
-position = Vector2(19, 29)
+position = Vector2(78, 31)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_jq3kj")
@@ -50,3 +54,16 @@ autoplay = true
 
 [node name="GunSound" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+
+[node name="CheckpointManager" parent="." instance=ExtResource("11_5g0mx")]
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("12_1wk6i")]
+position = Vector2(207, 22)
+initial = true
+
+[node name="Marker2D" type="Marker2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(-37, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint"]
+position = Vector2(-40, 11)
+shape = SubResource("RectangleShape2D_u0o58")

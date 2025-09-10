@@ -32,6 +32,7 @@ func switch_to_scene(scene_name : String):
         push_error("No scene named %s"%scene_name)
 
 func secret_ending():
+    switch_to_scene("menu")
     pass
 
 func starting_cutscene():

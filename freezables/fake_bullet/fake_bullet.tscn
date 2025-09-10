@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://xdhpu5nurlhv"]
+[gd_scene load_steps=13 format=3 uid="uid://xdhpu5nurlhv"]
 
 [ext_resource type="Script" uid="uid://cp21obcr3eyol" path="res://freezables/fake_bullet/fake_bullet.gd" id="1_gtp8b"]
 [ext_resource type="Texture2D" uid="uid://trkfxi3k4kms" path="res://assets/fire-ball.png" id="1_snkws"]
@@ -40,6 +40,10 @@ animations = [{
 radius = 6.0
 height = 36.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_cy2uw"]
+font = ExtResource("6_cy2uw")
+font_size = 30
+
 [node name="FakeBullet" type="Node2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_gtp8b")
@@ -57,6 +61,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_snkws")
 
 [node name="FreezableComponent" parent="." instance=ExtResource("2_4nirw")]
+only_active_when_visible = true
 
 [node name="FrozenVisualComponent" parent="FreezableComponent" node_paths=PackedStringArray("visual") instance=ExtResource("3_gtp8b")]
 visual = NodePath("../../Sprite2D")
@@ -68,13 +73,14 @@ override_params = Dictionary[String, Variant]({
 stream = ExtResource("5_eclv0")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -74.0
+offset_left = -70.0
 offset_top = -34.0
-offset_right = 79.0
+offset_right = 83.0
 offset_bottom = -11.0
 theme_override_fonts/font = ExtResource("6_cy2uw")
 theme_override_font_sizes/font_size = 24
-text = "[C] para congelar"
+text = "[C] "
+label_settings = SubResource("LabelSettings_cy2uw")
 horizontal_alignment = 1
 vertical_alignment = 1
 

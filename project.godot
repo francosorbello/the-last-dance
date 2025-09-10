@@ -16,12 +16,16 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 GlobalEventSystem="*res://addons/ftr_tools/global_event_system/global_event_system.gd"
-SfxSoundManager="*res://sounds/sound_manager/sfx_sound_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlobalData="*res://global_data/global_data.tscn"
+SfxSoundManager="*res://sounds/sound_manager/sfx_sound_manager.tscn"
 
 [dialogue_manager]
 
@@ -33,7 +37,6 @@ window/size/viewport_width=320
 window/size/viewport_height=180
 window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
 [editor_plugins]
